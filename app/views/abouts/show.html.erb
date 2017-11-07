@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Misión:</strong>
+  <%= @about.mission %>
+</p>
+
+<p>
+  <strong>Visión:</strong>
+  <%= @about.vision %>
+</p>
+
+<p>
+  <strong>Titulo del documento:</strong>
+  <%= @about.document_title %>
+</p>
+
+<div>
+  <p>
+    <strong> Estatutos: </strong>
+    <%= render :partial => 'partials/pdf_viewer', locals: {pdf_url: @about.statute_pdf.url(:original, timestamp: false), document_title: @about.document_title} %>
+  </p>
+</div>
+
+<%= link_to 'Editar', edit_about_path(@about) %> |
+<%= link_to 'Atrás', abouts_path %>

@@ -1,0 +1,22 @@
+<h2>¿Olvidaste tu contraseña?</h2>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <%= bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="field">
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+      <br>
+      <div class="field">
+        <%= f.submit "Enviar instrucciones para recuperar contraseña", class: 'btn btn-asoban' %>
+      </div>
+    <% end %>
+
+    <hr>
+
+    <%= render "devise/shared/links" %>
+    <%= link_to 'Volver a Inicio', root_path, class: 'btn btn-asoban' %>
+  </div>
+</div>

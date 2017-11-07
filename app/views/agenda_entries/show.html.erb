@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pdf:</strong>
+  <%= @agenda_entry.pdf %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @agenda_entry.event %>
+</p>
+
+<%= link_to 'Edit', edit_event_agenda_entry_path(@event, @agenda_entry) %> |
+<%= link_to 'Back', event_agenda_entries_path(event_id: @agenda_entry.event_id) %>

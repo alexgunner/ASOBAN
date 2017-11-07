@@ -1,0 +1,49 @@
+
+<section class="about-us standalone-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6">
+        <div class="col-md-12">
+          <h3>Visión</h3>
+          <p style="margin-left:15px;"><%= @about.vision %></p>
+          <h3>Misión</h3>
+          <p style="margin-left:15px;"><%= @about.mission %></p>
+          <h3>Historia</h3>
+          <p style="margin-left:15px;"><%= @about.history %></p>
+          <h3>Filosofía</h3>
+          <p style="margin-left:15px;"><%= @about.philosophy %></p>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 bank-list-box">
+        <h3>Bancos Asociados</h3>
+        <div class="col-md-12">
+          <div class="vertical-space-10px"></div>
+          <a href="#" class="bank-link"><img class="bank-link-img"  src="img/bancos/banco-bisa.png" alt="banco-bisa"></a>
+          <a href="#" class="bank-link"><img class="bank-link-img"  src="img/bancos/banco-de-credito-bolivia.png" alt="banco-de-credito-bolivia"></a>
+          <a href="#" class="bank-link"><img class="bank-link-img"  src="img/bancos/banco-de-la-nacion-argentina.png" alt="banco-de-la-nacion-argentina"></a>
+          <a href="#" class="bank-link"><img class="bank-link-img"  src="img/bancos/banco-economico.png" alt="banco-economico"></a>
+          <a href="#" class="bank-link"><img class="bank-link-img"  src="img/bancos/banco-fie.png" alt="banco-fie"></a>
+          <a href="#" class="bank-link"><img class="bank-link-img"  src="img/bancos/banco-fortaleza.png" alt="banco-fortaleza"></a>
+          <a href="#" class="bank-link"><img class="bank-link-img"  src="img/bancos/banco-ganadero.png" alt="banco-ganadero"></a>
+          <a href="#" class="bank-link"><img class="bank-link-img"  src="img/bancos/banco-mercantil-santa-cruz.png" alt="banco-mercantil-santa-cruz"></a>
+          <a href="#" class="bank-link"><img class="bank-link-img"  src="img/bancos/banco-nacional-de-bolivia.png" alt="banco-nacional-de-bolivia"></a>
+          <a href="#" class="bank-link"><img class="bank-link-img"  src="img/bancos/banco-sol.png" alt="banco-sol"></a>
+          <a href="#" class="bank-link"><img class="bank-link-img"  src="img/bancos/banco-union.png" alt="banco-union"></a>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-ms-12">
+        <div class="vertical-space-50px"></div>
+        <h2>Estatuto</h2>
+        <div class="row">
+          <div class="col-md-10 alligned-vertically">
+            <h3><%= @about.document_title %></h3>
+          </div><!--
+          --><div class="col-md-2 alligned-vertically">
+            <%= render :partial => 'partials/pdf_viewer', locals: {pdf_url: @about.statute_pdf.url(:original, timestamp: false), document_title: @about.document_title} %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="vertical-space-50px"></div>

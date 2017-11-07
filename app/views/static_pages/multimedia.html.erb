@@ -1,0 +1,16 @@
+
+<section class="entities standalone-section">
+	<div class="container">
+		<div class="row">
+			<% @multimedia.each do |m| %>
+
+
+					<div class="col-lg-6">
+						<div class="text-center"><h3><%= m.title %></h3></div>
+						<img src="<%= m.picture.url %>" class="img-responsive">
+					</div>
+			<% end %>
+		</div>
+		<br>
+	</div>
+</section>

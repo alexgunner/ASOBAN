@@ -1,0 +1,46 @@
+
+<h1 class="text-center">Preguntas Frecuentes</h1>
+
+<% if notice.present? %>
+  <div class="alert alert-asoban">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <div id="notice"> <%= notice %> </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+    <div class="box">
+      <div class="box-header">
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Pregunta</th>
+              <th>Respuesta</th>
+              <th colspan="2"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @faqs.each do |faq| %>
+              <tr>
+                <td><%= faq.question %></td>
+                <td><%= faq.answer %></td>
+                <td><%= link_to 'Editar', edit_faq_path(faq), class: 'btn btn-asoban' %></td>
+                <td><%= link_to 'Eliminar', faq, method: :delete, data: { confirm: '¿Está seguro que desea eliminar este registro?' }, class: 'btn btn-asoban-inverse' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <%= link_to 'Nueva Pregunta', new_faq_path, class: 'btn btn-asoban' %>
+      </div>
+    </div>
+    <!-- /.box -->
+  </div>
+</div>

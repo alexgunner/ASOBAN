@@ -1,0 +1,29 @@
+
+    <%= bootstrap_form_for(faq) do |f| %>
+      <% if faq.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(faq.errors.count, "error") %> prohibited this faq from being saved:</h2>
+
+          <ul>
+          <% faq.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= f.text_field :question, class: 'form-control', label: "Pregunta" %>
+      </div>
+
+      <div class="field">
+        <%= f.text_area :answer, class: 'form-control', rows: 5, label: "Respuesta" %>
+      </div>
+
+      <div class="actions">
+        <div class="text-center">
+          <%= f.submit 'Aceptar', class: "btn btn-asoban" %>
+          <%= link_to "Volver", '/faqs', class: "btn btn-asoban-inverse" %>
+        </div>
+      </div>
+    <% end %>

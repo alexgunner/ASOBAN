@@ -1,0 +1,48 @@
+
+<h1 class="text-center">Carrusel</h1>
+
+<% if notice.present? %>
+  <div class="alert alert-asoban">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <div id="notice"> <%= notice %> </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+    <div class="box">
+      <div class="box-header">
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Imagen 1</th>
+              <th>Imagen 2</th>
+              <th>Imagen 3</th>
+              <th colspan="2"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @carousels.each do |carousel| %>
+              <tr>
+                <td>carousel.pic1_file_name</td>
+                <td>carousel.pic2_file_name</td>
+                <td>carousel.pic3_file_name</td>
+                <td><%= link_to 'Editar', edit_carousel_path(carousel), class: 'btn btn-asoban' %></td>
+                <td><%= link_to 'Eliminar', carousel, method: :delete, data: { confirm: '¿Está seguro que desea eliminar este registro?' }, class: 'btn btn-asoban-inverse' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <%= link_to 'Nuevo carrusel', new_carousel_path, class: "btn btn-asoban" %>
+      </div>
+    </div>
+    <!-- /.box -->
+  </div>
+</div>

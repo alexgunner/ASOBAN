@@ -1,0 +1,90 @@
+
+
+<h1 class="text-center">Eventos</h1>
+
+<% if notice.present? %>
+  <div class="alert alert-asoban">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <div id="notice"> <%= notice %> </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+    <div class="box">
+      <div class="box-header">
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Título</th>
+              <th>Descripción</th>
+              <th>Imagen</th>
+              <th>Imagen de registro</th>
+              <th>Documento de registro</th>
+              <th colspan="2"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @events.each do |event| %>
+              <tr>
+                <td><%= event.title %></td>
+                <td><%= strip_tags event.description %></td>
+                <td><img src='<%= event.picture.url(:medium) %>' class='img-responsive'></td>
+                <td><img src='<%= event.registration_image.url(:medium) %>' class='img-responsive'></td>
+                <td>
+                  <% if event.registration_pdf.present? %>
+                    <button class="btn btn-asoban" type="button" name="button" data-toggle="modal" data-target="#event-registration-pdf-<%= event.id %>"><%= 'Ver documento anexado' %></button>
+                  <% end %>
+                </td>
+                <td><%= link_to 'Editar', edit_event_path(event), class: 'btn btn-asoban' %></td>
+                <td><%= link_to 'Elminiar', event, method: :delete, data: {
+                  confirm: 'Borrando Evento',
+                  'confirm-button-text': 'Si',
+                  'cancel-button-text': 'No',
+                  'confirm-button-color': '#66CD00',
+                  'sweet-alert-type': 'warning',
+                  text: 'Estas seguro?'
+                }, class: 'btn btn-asoban-inverse' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <%= link_to 'Nuevo Evento', new_event_path, class: "btn btn-asoban" %>
+      </div>
+    </div>
+    <!-- /.box -->
+  </div>
+</div>
+
+
+
+<% @events.each do |event| %>
+  <div class="container">
+    <div class="modal fade" id="event-registration-pdf-<%= event.id %>" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4> Documento de registro </h4>
+            </div>
+          <div class="modal-body">
+            <iframe src="http://docs.google.com/gview?url=http://<%= request.host + event.registration_pdf.url(:original, timestam: false) %>&embedded=true" width="100%" height="100%" style="border: none;">
+              El navegador actual no soporta la visualizacion de PDFs. Para ver el documento puede descargarlo haciendo click en este boton: <a href="<%= event.registration_pdf.url(:original, timestam: false) %>">Descargar PDF</a>
+            </iframe>
+          </div>
+          <div class="modal-footer">
+            Para descargar el pdf haga <a href="<%= event.registration_pdf.url(:original, timestam: false) %>" download class="btn btn-asoban">click aquí.</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

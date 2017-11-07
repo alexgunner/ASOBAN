@@ -1,0 +1,11 @@
+<%= bootstrap_form_for(gallery, html: { multipart: true }) do |f| %>
+
+    <%= f.text_field :title, label: 'Título' %>
+
+    <%= f.file_field :picture, label: 'Imagen' %>
+
+  <div class="actions">
+    <%= f.submit 'Aceptar', class: 'btn btn-asoban' %>
+    <%= link_to 'Volver', '/galleries', class: 'btn btn-asoban-inverse' %>
+  </div>
+<% end %>

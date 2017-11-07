@@ -1,0 +1,210 @@
+<%= bootstrap_form_for(admin) do |f| %>
+  <% if admin.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(admin.errors.count, "error") %> prohibited this admin from being saved:</h2>
+
+      <ul>
+      <% admin.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6">
+        <div class="field">
+          <div class="form-group">
+            <%= label_tag :email_user, :Email, class: 'control-label' %>
+            <%= text_field :user, :email, class: 'form-control' %>
+          </div>
+        </div>
+        <% if @user.email.blank? %>
+          <div class="field">
+            <div class="form-group">
+              <br>
+              <%= label_tag 'Se enviara un correo para establecer la contraseña de la cuenta.' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-6">
+        <div class="field">
+          <%= f.text_field :first_name %>
+        </div>
+
+        <div class="field">
+          <%= f.text_field :last_name %>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+    <div class="switches-container">
+      <div class="checkbox-field col-xs-6 col-sm-6 col-md-4">
+        <div class="checkbox-wrapper">
+          <%= f.label :can_manage_contact %>
+          <hr>
+          <div class="onoffswitch">
+            <%= f.check_box_without_bootstrap :can_manage_contact, class: 'onoffswitch-checkbox' %>
+            <label class="onoffswitch-label" for="admin_can_manage_contact"></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="checkbox-field col-xs-6 col-sm-6 col-md-4">
+        <div class="checkbox-wrapper">
+          <%= f.label :can_manage_faq %>
+          <hr>
+          <div class="onoffswitch">
+            <%= f.check_box_without_bootstrap :can_manage_faq, class: 'onoffswitch-checkbox'  %>
+            <label class="onoffswitch-label" for="admin_can_manage_faq"></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="checkbox-field col-xs-6 col-sm-6 col-md-4">
+        <div class="checkbox-wrapper">
+          <%= f.label :can_manage_about %>
+          <hr>
+          <div class="onoffswitch">
+            <%= f.check_box_without_bootstrap :can_manage_about, class: 'onoffswitch-checkbox'  %>
+            <label class="onoffswitch-label" for="admin_can_manage_about"></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="checkbox-field col-xs-6 col-sm-6 col-md-4">
+        <div class="checkbox-wrapper">
+          <%= f.label :can_manage_articles %>
+          <hr>
+          <div class="onoffswitch">
+            <%= f.check_box_without_bootstrap :can_manage_articles, class: 'onoffswitch-checkbox'  %>
+            <label class="onoffswitch-label" for="admin_can_manage_articles"></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="checkbox-field col-xs-6 col-sm-6 col-md-4">
+        <div class="checkbox-wrapper">
+          <%= f.label :can_manage_events %>
+          <hr>
+          <div class="onoffswitch">
+            <%= f.check_box_without_bootstrap :can_manage_events, class: 'onoffswitch-checkbox'  %>
+            <label class="onoffswitch-label" for="admin_can_manage_events"></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="checkbox-field col-xs-6 col-sm-6 col-md-4">
+        <div class="checkbox-wrapper">
+          <%= f.label :can_manage_links %>
+          <hr>
+          <div class="onoffswitch">
+            <%= f.check_box_without_bootstrap :can_manage_links, class: 'onoffswitch-checkbox'  %>
+            <label class="onoffswitch-label" for="admin_can_manage_links"></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="checkbox-field col-xs-6 col-sm-6 col-md-4">
+        <div class="checkbox-wrapper">
+          <%= f.label :can_manage_multimedia %>
+          <hr>
+          <div class="onoffswitch">
+            <%= f.check_box_without_bootstrap :can_manage_multimedia, class: 'onoffswitch-checkbox'  %>
+            <label class="onoffswitch-label" for="admin_can_manage_multimedia"></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="checkbox-field col-xs-6 col-sm-6 col-md-4">
+        <div class="checkbox-wrapper">
+          <%= f.label :can_manage_carousel %>
+          <hr>
+          <div class="onoffswitch">
+            <%= f.check_box_without_bootstrap :can_manage_carousel, class: 'onoffswitch-checkbox'  %>
+            <label class="onoffswitch-label" for="admin_can_manage_carousel"></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="checkbox-field col-xs-6 col-sm-6 col-md-4">
+        <div class="checkbox-wrapper">
+          <%= f.label :can_manage_newsletter %>
+          <hr>
+          <div class="onoffswitch">
+            <%= f.check_box_without_bootstrap :can_manage_newsletter, class: 'onoffswitch-checkbox'  %>
+            <label class="onoffswitch-label" for="admin_can_manage_newsletter"></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="checkbox-field col-xs-6 col-sm-6 col-md-4">
+        <div class="checkbox-wrapper">
+          <%= f.label :can_manage_boxes %>
+          <hr>
+          <div class="onoffswitch">
+            <%= f.check_box_without_bootstrap :can_manage_boxes, class: 'onoffswitch-checkbox'  %>
+            <label class="onoffswitch-label" for="admin_can_manage_boxes"></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="checkbox-field col-xs-6 col-sm-6 col-md-4">
+        <div class="checkbox-wrapper">
+          <%= f.label :can_manage_categories %>
+          <hr>
+          <div class="onoffswitch">
+            <%= f.check_box_without_bootstrap :can_manage_categories, class: 'onoffswitch-checkbox'  %>
+            <label class="onoffswitch-label" for="admin_can_manage_categories"></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="checkbox-field col-xs-6 col-sm-6 col-md-4">
+        <div class="checkbox-wrapper">
+          <%= f.label :can_manage_messages %>
+          <hr>
+          <div class="onoffswitch">
+            <%= f.check_box_without_bootstrap :can_manage_messages, class: 'onoffswitch-checkbox'  %>
+            <label class="onoffswitch-label" for="admin_can_manage_messages"></label>
+          </div>
+        </div>
+      </div>
+
+      <% if false %>
+        <div class="checkbox-field col-xs-6 col-sm-6 col-md-4">
+          <div class="checkbox-wrapper">
+            <%= f.label :can_manage_admins %>
+            <hr>
+            <div class="onoffswitch">
+              <%= f.check_box_without_bootstrap :can_manage_admins, class: 'onoffswitch-checkbox'  %>
+              <label class="onoffswitch-label" for="admin_can_manage_newsletter"></label>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="vertical-space-50px"></div>
+      <div class="actions">
+        <%= f.submit 'Aceptar', class: 'btn btn-asoban'  %>
+        <%= link_to 'Volver', admins_path, class: 'btn btn-asoban-inverse' %>
+      </div>
+    </div>
+  </div>
+<% end %>

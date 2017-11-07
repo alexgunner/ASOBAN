@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @speaker.title %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @speaker.image %>
+</p>
+
+<p>
+  <strong>Pdf:</strong>
+  <%= @speaker.pdf %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @speaker.event %>
+</p>
+
+<%= link_to 'Edit', edit_speaker_path(@speaker) %> |
+<%= link_to 'Back', speakers_path %>

@@ -1,0 +1,7 @@
+<p>Hola,</p>
+
+<p>Recientemente se creó una cuenta en <a href="http://www.asoban.com">Asoban.com</a>con tu correo electrónico.</p>
+
+<p>Lo primero que debes hacer es cambiar tu contraseña siguiendo el siguiente enlace.</p>
+
+<%= link_to 'Cambiar contraseña', edit_password_url(@resource, reset_password_token: @token) %>

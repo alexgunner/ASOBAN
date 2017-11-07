@@ -1,0 +1,12 @@
+<section class="faq-section standalone-section">
+  <div class="container">
+    <h1>Preguntas</h1>
+    <div style="margin-left:15px;">
+      <% Faq.all.each do |faq| %>
+        <strong><%= faq.question %></strong>
+        <p><%= faq.answer %></p>
+        <hr>
+      <% end %>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,473 @@
+
+
+<style>
+  .requests, .manuals, .digital-ids {
+    margin-left: 15px;
+  }
+  .certificate-sub-title {
+    margin-left: 15px;
+    border-bottom: 1px solid #000f38;
+  }
+  .tab-box {
+    padding: 50px;
+    margin: 0 auto;
+    background: #fff;
+  }
+
+  .tab {
+    display: none;
+    padding: 20px 0 0;
+    border-top: 1px solid #ddd;
+  }
+
+  .tab-option {
+    display: none;
+  }
+
+  .tab-label {
+    display: inline-block;
+    margin: 0 0 -1px;
+    padding: 15px 25px;
+    font-weight: 600;
+    text-align: center;
+    color: #bbb;
+    border: 1px solid transparent;
+  }
+
+  .tab-label:before {
+    font-family: fontawesome;
+    font-weight: normal;
+    margin-right: 10px;
+  }
+
+  .tab-label:hover {
+    color: #888;
+    cursor: pointer;
+  }
+
+  .tab-option:checked + .tab-label {
+    color: #555;
+    border: 1px solid #ddd;
+    border-top: 3px solid #b49a78;
+    border-bottom: 1px solid #fff;
+  }
+
+  #funcionarios-acreditados-obtencion-tab:checked ~ #funcionarios-acreditados-obtencion-content,
+  #funcionarios-acreditados-renovacion-tab:checked ~ #funcionarios-acreditados-renovacion-content,
+  #obtencion-renovacion-instrucciones-tab:checked ~ #obtencion-renovacion-instrucciones-content {
+    display: block;
+  }
+
+  /*
+  Copyright (c) 2017 by Oliver Knoblich (https://codepen.io/oknoblich/pen/tfjFl)
+  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  */
+</style>
+
+<section class="certificate standalone-section">
+  <div class="container">
+    <!--<div class="text-center">
+      <div class="btn-group requests-nav">
+        <a href="#requests" class="btn btn-asoban">Solicitudes</a>
+        <a href="#manuals" class="btn btn-asoban">Manuales</a>
+        <a href="#digital-ids" class="btn btn-asoban">Identificadores Digitales</a>
+      </div>
+    </div>-->
+    <div class="vertical-space-50px"></div>
+    <h1>Firma Digital</h1>
+    <a id="rquests"></a>
+    <div class="row requests">
+      <div class="col-md-12">
+        <div class="vertical-space-10px"></div><div class="vertical-space-10px"></div>
+        <div class="tab-box">
+          <input class="tab-option" id="funcionarios-acreditados-obtencion-tab" type="radio" name="tabs" checked>
+          <label class="tab-label" for="funcionarios-acreditados-obtencion-tab">Funcionarios Acreditados (Obtención)</label>
+
+          <input class="tab-option" id="funcionarios-acreditados-renovacion-tab" type="radio" name="tabs">
+          <label class="tab-label" for="funcionarios-acreditados-renovacion-tab">Funcionarios Acreditados (Renovación)</label>
+
+          <input class="tab-option" id="obtencion-renovacion-instrucciones-tab" type="radio" name="tabs">
+          <label class="tab-label" for="obtencion-renovacion-instrucciones-tab">Obtención y Renovación (Instrucciones)</label>
+
+          <div class="tab" id="funcionarios-acreditados-obtencion-content">
+            <h4 class="certificate-sub-title">INSTRUCTIVO PARA OBTENER UN CERTIFICADO DIGITAL (FUNCIONARIOS ACREDITADOS)</h4>
+            <p>Llene el formulario con los datos correspondientes y siga las instrucciones que aparecen en pantalla.<br>
+
+
+              <ol>
+                <li>Lea el acuerdo del suscriptor</li>
+                <li>Verifique los datos e imprima el formulario del suscriptor que aparecerá en pantalla </li>
+                <li>Lleve el formulario impreso ante una oficina de ASOBAN con una fotocopia de su carnet de identidad.</li>
+              </ol>
+
+
+              El funcionario de ASOBAN revisará los datos y si está correcto le hará entrega de un sobre cerrado conteniendo el PIN1.<br><br>
+
+  Al correo electrónico especificado en el formulario del suscriptor se enviará el PIN2. <br><br>
+
+ Una vez que tenga el PIN1 y PIN2 proceda con los pasos detallados en el manual Solicitud Certificados para obtener su Certificado Digital.<br><br>
+
+  Puede obtener ayuda adicional en la página http://www.certisur.com/support/userid/faq.htm.<br><br>
+
+ Las consultas pueden realizarse al correo electrónico soporte@asoban.bo
+            </p>
+
+          <div class="col-md-12">
+            <%= bootstrap_form_for(@certification) do |f| %>
+                <% if @certification.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@certification.errors.count, "error") %> prohibited this @certification from being saved:</h2>
+
+                    <ul>
+                    <% @certification.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <%= f.text_field :name, label: 'Nombre(s)', placeholder: "Ej. Javier" %>
+                    <span id="name_error" style="color: red;"></span>
+                  </div>
+                  <div class="col-lg-6">
+                    <%= f.text_field :lastname, label: 'Apellido(s)', placeholder: "Ej. Perez Hurtado" %>
+                    <span id="lastname_error" style="color: red;"></span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <%= f.text_field :ci, label: 'Carnet de identidad', placeholder: "Ej. 4725622 LP" %>
+                    <span id="ci_error" style="color: red;"></span>
+                  </div>
+                  <div class="col-lg-6">
+                    <%= f.text_field :email, label: 'Correo electrónico', placeholder: "javier.perez@gmail.com" %>
+                    <span id="email_error" style="color: red;"></span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <%= f.select(:state, options_for_select(@states), label: 'Departamento') %>
+                    <span id="name_error" style="color: red;"></span>
+                  </div>
+                  <div class="col-lg-6">
+                    <%= f.text_field :city, label: 'Localidad/Ciudad', placeholder: "Ej. Sucre" %>
+                    <span id="city_error" style="color: red;"></span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <%= f.text_field :institution_name, label: 'Nombre de la institución', placeholder: "Ej. Banco Ganadero" %>
+                    <span id="institution_error" style="color: red;"></span>
+                  </div>
+                  <div class="col-lg-6">
+                    <%= f.number_field :nit, label: 'NIT', placeholder: "Ej. 4523652011" %>
+                    <span id="nit_error" style="color: red;"></span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <%= f.text_field :phone, label: 'Teléfono', placeholder: "Ej. (591 2) 2224312" %>
+                    <span id="phone_error" style="color: red;"></span>
+                  </div>
+                  <div class="col-lg-6">
+                    <%= f.text_field :legal_address, label: 'Domicilio Legal', placeholder: "Ej. Av. Saavedra #877" %>
+                    <span id="legal_address_error" style="color: red;"></span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <%= f.text_field :charge, label: 'Cargo', placeholder: "Gerente de operaciones" %>
+                    <span id="charge_error" style="color: red;"></span>
+                  </div>
+                  <div class="col-lg-6">
+                    <%= f.date_field :start_date, label: 'Fecha de Ingreso a la Institución' %>
+                    <span id="name_error" style="color: red;"></span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <%= f.text_field :observations, label: 'Observaciones', placeholder: "(Opcional)" %>
+                  </div>
+                </div>
+
+
+                <div class="actions">
+                  <div class="text-center"><%= f.submit 'Enviar', class: 'btn btn-asoban', id: "send_message" %></div>
+                </div>
+              <% end %>
+          </div>
+
+
+          </div>
+          <div class="tab" id="funcionarios-acreditados-renovacion-content">
+            <h4 class="certificate-sub-title">SI USTED YA TIENE UN CERTIFICADO DIGITAL Y DESEA RENOVARLO (FUNCIONARIOS ACREDITADOS)</h4>
+            <p>Llene el formulario con los datos correspondientes y siga las instrucciones que aparecen en pantalla.<br>
+
+              <ul>
+                <li>Lea el acuerdo del suscriptor. </li>
+                <li>Verifique los datos e imprima el formulario de Renovación que aparecerá en pantalla. </li>
+                <li>Lleve el formulario impreso ante una oficina de ASOBAN con una fotocopia de su carnet de identidad.</li>
+              </ul>
+
+              Siga el manual de Renovación de Certificado Digital<br>
+
+  Nota.- Para seguir este manual es necesario que el Digital ID esté configurado en su equipo, para saber si su Digital Id está en su equipo puede seguir el manual de Cómo puedo ver si mi Certificado Digital está instalado en mi máquina.<br><br>
+
+              Si su certificado no se encuentra instalado en su máquina, puede realizar la instalación siguiendo el manual Importar Certificado Digital<br><br>
+
+              Puede obtener ayuda adicional en la página http://www.certisur.com/support/userid/faq.htm <br>
+
+              Las consultas pueden realizarse al correo electrónico soporte@asoban.bo<br>
+
+              Más información en http://www.certisur.com/support/</p>
+
+
+              <%= bootstrap_form_for(@certification) do |f| %>
+                <% if @certification.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@certification.errors.count, "error") %> prohibited this @certification from being saved:</h2>
+
+                    <ul>
+                    <% @certification.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                    </ul>
+                  </div>
+                <% end %>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <%= f.text_field :name, label: 'Nombre(s)', placeholder: "Ej. Javier" %>
+                    <span id="name_error" style="color: red;"></span>
+                  </div>
+                  <div class="col-lg-6">
+                    <%= f.text_field :lastname, label: 'Apellido(s)', placeholder: "Ej. Perez Hurtado" %>
+                    <span id="lastname_error" style="color: red;"></span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <%= f.text_field :ci, label: 'Carnet de identidad', placeholder: "Ej. 4725622 LP" %>
+                    <span id="ci_error" style="color: red;"></span>
+                  </div>
+                  <div class="col-lg-6">
+                    <%= f.text_field :email, label: 'Correo electrónico', placeholder: "javier.perez@gmail.com" %>
+                    <span id="email_error" style="color: red;"></span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <%= f.select(:state, options_for_select(@states), label: 'Departamento') %>
+                    <span id="name_error" style="color: red;"></span>
+                  </div>
+                  <div class="col-lg-6">
+                    <%= f.text_field :city, label: 'Localidad/Ciudad', placeholder: "Ej. Sucre" %>
+                    <span id="city_error" style="color: red;"></span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <%= f.text_field :institution_name, label: 'Nombre de la institución', placeholder: "Ej. Banco Ganadero" %>
+                    <span id="institution_error" style="color: red;"></span>
+                  </div>
+                  <div class="col-lg-6">
+                    <%= f.number_field :nit, label: 'NIT', placeholder: "Ej. 4523652011" %>
+                    <span id="nit_error" style="color: red;"></span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <%= f.text_field :phone, label: 'Teléfono', placeholder: "Ej. (591 2) 2224312" %>
+                    <span id="phone_error" style="color: red;"></span>
+                  </div>
+                  <div class="col-lg-6">
+                    <%= f.text_field :legal_address, label: 'Domicilio Legal', placeholder: "Ej. Av. Saavedra #877" %>
+                    <span id="legal_address_error" style="color: red;"></span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <%= f.text_field :charge, label: 'Cargo', placeholder: "Gerente de operaciones" %>
+                    <span id="charge_error" style="color: red;"></span>
+                  </div>
+                  <div class="col-lg-6">
+                    <%= f.date_field :start_date, label: 'Fecha de Ingreso a la Institución' %>
+                    <span id="name_error" style="color: red;"></span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-6">
+                    <%= f.text_field :observations, label: 'Observaciones', placeholder: "(Opcional)" %>
+                  </div>
+                </div>
+
+
+                <div class="actions">
+                  <div class="text-center"><%= f.submit 'Enviar', class: 'btn btn-asoban', id: "send_message" %></div>
+                </div>
+              <% end %>
+          </div>
+
+          <div class="tab" id="obtencion-renovacion-instrucciones-content">
+            <h4 class="certificate-sub-title">INSTRUCCIONES PARA UNA SOLICITUD DE CERTIFICADO DIGITAL (OBTENCIÓN Y RENOVACIÓN)</h4>
+            <p>
+              Si desea obtener un Certificado Digital por favor contáctese mediante el correo electrónico soporte@asoban.bo indicando a qué institución pertenece y el número de teléfono para que el Administrador de Certificados Digitales se comunique con usted.<br><br>
+
+              Adjunto al correo envíe una copia del poder del representante legal de su institución, así como los datos de los funcionarios acreditados para obtener Certificados Digitales, que son:
+
+              <ul>
+                <li>Nombre completo del funcionario acreditado</li>
+                <li>Cédula de Identidad</li>
+                <li>Fecha de ingreso a la institución</li>
+                <li>Correo electrónico empresarial</li>
+                <li>Ubicación geográfica de dónde serán emitidos los certificados (Ej. Sucre)</li>
+              </ul>
+
+              El Administrador de Certificados Digitales le hará llegar dos contratos de venta de Certificados Digitales, una copia del mismo debe ser devuelto con la correspondiente firma del representante legal de su institución. Una vez realizado este paso, los funcionarios acreditados pueden seguir con las instrucciones de Obtener un Certificado Digital o Renovación de Certificado Digital según corresponda en los pasos detallados a continuación.<br><br>
+
+              Cada Certificado Digital tiene un costo de un mil doscientos sesenta y cinco 00/100 bolivianos (Bs 1,265.00)
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--<a id="manuals"></a>
+    <div class="vertical-space-50px"></div>
+    <div class="row manuals">
+      <h2>Manuales</h2>
+    </div>
+    <a id="digital-ids"></a>
+    <div class="vertical-space-50px"></div>
+    <div class="row digital-ids">
+      <h2>Identificadores Digitales</h2>
+    </div>
+    <div class="vertical-space-50px"></div>
+  </div>-->
+  <div class="vertical-space-50px"></div>
+</section>
+
+<script type="text/javascript">
+  function validatearticleFunction() {
+    $('#new_certification').validate({
+      debug: false,
+      rules: {
+        "certification[name]": { minlength: 10, maxlength: 100 }
+             }
+          })
+        }
+  $(document).ready(validatearticleFunction);
+  $(document).on('page:load', validatearticleFunction);
+
+
+  $("#send_message").hide();
+
+  $('#certification_email').on("change paste keyup", function() {
+    $("#email_error").empty();
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    var valid_email = regex.test($(this).val());
+    if(valid_email==false){
+      $("#email_error").append("El correo electrónico es incorrecto");
+      $("#send_message").hide();
+    } else {
+      $("#send_message").show();
+    }
+  });
+
+  $('#certification_name').on("change paste keyup", function() {
+    $("#name_error").empty();
+    if($("#certification_name").val().length < 3){
+      $("#name_error").append("El nombre es muy corto, mínimo 3 caracteres");
+      $("#send_message").hide();
+    } else {
+      $("#send_message").show();
+    }
+  });
+
+  $('#certification_lastname').on("change paste keyup", function() {
+    $("#lastname_error").empty();
+    if($("#certification_lastname").val().length < 3){
+      $("#lastname_error").append("Los apellidos son muy cortos, mínimo 3 caracteres");
+      $("#send_message").hide();
+    } else {
+      $("#send_message").show();
+    }
+  });
+
+  $('#certification_phone').on("change paste keyup", function() {
+    $("#phone_error").empty();
+    if($("#certification_phone").val().length < 7){
+      $("#phone_error").append("El teléfono es muy corto, mínimo 7 caracteres");
+      $("#send_message").hide();
+    } else {
+      $("#send_message").show();
+    }
+  });
+
+  $('#certification_ci').on("change paste keyup", function() {
+    $("#ci_error").empty();
+    if($("#certification_ci").val().length < 7){
+      $("#ci_error").append("CI muy corto, mínimo 7 caracteres");
+      $("#send_message").hide();
+    } else {
+      $("#send_message").show();
+    }
+  });
+
+  $('#certification_institution_name').on("change paste keyup", function() {
+    $("#institution_error").empty();
+    if($("#certification_institution_name").val().length < 4){
+      $("#institution_error").append("Localidad/Ciudad muy corto, mínimo 4 caracteres");
+      $("#send_message").hide();
+    } else {
+      $("#send_message").show();
+    }
+  });
+
+  $('#certification_nit').on("change paste keyup", function() {
+    $("#nit_error").empty();
+    if($("#certification_nit").val().length < 7){
+      $("#nit_error").append("NIT muy corto, mínimo 7 caracteres");
+      $("#send_message").hide();
+    } else {
+      $("#send_message").show();
+    }
+  });
+
+  $('#certification_legal_address').on("change paste keyup", function() {
+    $("#legal_address_error").empty();
+    if($("#certification_legal_address").val().length < 7){
+      $("#legal_address_error").append("Domicilio legal muy corto, mínimo 7 caracteres");
+      $("#send_message").hide();
+    } else {
+      $("#send_message").show();
+    }
+  });
+
+  $('#certification_charge').on("change paste keyup", function() {
+    $("#charge_error").empty();
+    if($("#certification_charge").val().length < 3){
+      $("#charge_error").append("Cargo muy corto, mínimo 3 caracteres");
+      $("#send_message").hide();
+    } else {
+      $("#send_message").show();
+    }
+  });
+
+</script>

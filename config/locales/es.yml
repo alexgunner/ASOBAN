@@ -1,0 +1,164 @@
+es:
+  activerecord:
+    models:
+      contact: 'Contacto'
+      event: 'Evento'
+      article: 'Noticia'
+      speaker: 'Conferencista'
+      sponsor: 'Auspicio'
+    attributes:
+      contact:
+        address: 'Dirección'
+        phone_numbers: 'Teléfono'
+        mailbox: 'Casilla'
+        city: 'Ciudad'
+      link:
+        title: 'Título'
+        link: 'Enlace'
+        image: 'Imagen'
+      agenda_entry:
+        title: 'Título'
+        pdf: 'Documento anexado'
+      sponsor:
+        image: 'Imagen anexada'
+      speaker:
+        image: 'Imagen anexada'
+        pdf: 'Documento anexado'
+        title: 'Título'
+      event:
+        agenda_title: 'Título de sección Agenda'
+        sponsors_title: 'Título de sección Auspiciadores'
+        speakers_title: 'Título de sección Conferencistas'
+        registration_title: 'Título de sección Registro'
+        title: 'Título'
+        description: 'Descripción'
+        location: 'Ubicación'
+        picture: 'Imagen'
+        registration_image: 'Imagen para registro'
+        registration_pdf: 'Documento para registro'
+      admin:
+        first_name: 'Nombre'
+        last_name: 'Apellido'
+        can_manage_contact: 'Puede administrar Contactos'
+        can_manage_faq: 'Puede administrar preguntas Frecuentes'
+        can_manage_about: 'Puede administrar Nosotros'
+        can_manage_articles: 'Puede administrar Aticulos'
+        can_manage_events: 'Puede administrar Eventos'
+        can_manage_links: 'Puede administrar Enlaces'
+        can_manage_multimedia: 'Puede administrar Multimedia'
+        can_manage_carousel: 'Puede administrar Carrusel'
+        can_manage_newsletter: 'Puede administrar Boletín'
+        can_manage_boxes: 'Puede administrar la seccion de notas en pagina inicial'
+        can_manage_categories: 'Puede administrar Categorias'
+        can_manage_messages: 'Puede administrar Mensajes del formulario de contacto'
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: 'Se debe introducir el email para finalizar el registro'
+              taken: 'debe ser usado solo en una cuenta'
+        about:
+          attributes:
+            mission:
+              blank: 'Se debe introducir la misión.'
+            vision:
+              blank: 'Se debe introducir la visión.'
+            document_title:
+              blank: 'Se debe introducir el titulo del documento para finalizar el registro.'
+        faq:
+          attributes:
+            question:
+              blank: 'El campo para la pregunta debe ser llenado.'
+              too_short: 'El campo de pregunta debe tener mas de %{count} caracteres.'
+            answer:
+              blank: 'El campo para la respuesta debe ser llenado.'
+              too_short: 'El campo para la respuesta debe tener mas de %{count} caracteres.'
+        contact:
+          attributes:
+            address:
+              too_short: 'debe tener mas que %{count} caracteres.'
+            emails:
+              too_short: 'debe tener mas de %{count} caracteres.'
+            phone_numbers:
+              too_short: 'debe tener mas de %{count} caracteres.'
+        agenda_entry:
+          attributes:
+            title:
+              too_short: 'debe tener mas de %{count} caracteres.'
+              too_long: 'debe tener menos de %{count} caracteres.'
+            pdf:
+              blank: 'no puede estar vacío'
+              less_than: 'debe pesar menos que %{count}'
+            pdf_content_type:
+              invalid: 'debe tener formato .pdf'
+        speaker:
+          attributes:
+            title:
+              too_short: 'debe tener mas de %{count} caracteres.'
+              too_long: 'debe tener menos de %{count} caracteres.'
+            image:
+              blank: 'no puede estar vacía'
+              less_than: 'debe pesar menos que %{count}'
+            image_content_type:
+              invalid: 'debe tener formato .png .jpg o .jpeg'
+            pdf_content_type:
+              invalid: 'debe tener formato .pdf'
+        sponsor:
+          attributes:
+            image:
+              blank: 'no puede estar vacía'
+              less_than: 'debe pesar menos que %{count}'
+            image_content_type:
+              invalid: 'debe tener formato .png .jpg o .jpeg'
+        gallery:
+          attributes:
+            title:
+              too_short: 'debe tener mas de %{count} caracteres.'
+              too_long: 'debe tener menos de %{count} caracteres.'
+        link:
+          attributes:
+            title:
+              too_short: 'debe tener mas de %{count} caracteres.'
+              too_long: 'debe tener menos de %{count} caracteres.'
+            link:
+              too_short: 'debe tener mas de %{count} caracteres.'
+              too_long: 'debe tener menos de %{count} caracteres.'
+            image:
+              blank: 'no puede estar vacía'
+              less_than: 'debe pesar menos que %{count}'
+            image_content_type:
+              invalid: 'debe tener formato .png .jpg o .jpeg'
+        event:
+          attributes:
+            title:
+              too_short: 'debe tener mas de %{count} caracteres.'
+              too_long: 'debe tener menos de %{count} caracteres.'
+            agenda_title:
+              too_short: 'debe tener mas de %{count} caracteres.'
+              too_long: 'debe tener menos de %{count} caracteres.'
+            sponsors_title:
+              too_short: 'debe tener mas de %{count} caracteres.'
+              too_long: 'debe tener menos de %{count} caracteres.'
+            speakers_title:
+              too_short: 'debe tener mas de %{count} caracteres.'
+              too_long: 'debe tener menos de %{count} caracteres.'
+            registration_title:
+              too_short: 'debe tener mas de %{count} caracteres.'
+              too_long: 'debe tener menos de %{count} caracteres.'
+            description:
+              too_short: 'debe tener mas de %{count} caracteres.'
+              too_long: 'debe tener menos de %{count} caracteres.'
+            picture:
+              blank: 'no puede estar vacía'
+              less_than: 'debe pesar menos que %{count}'
+            picture_content_type:
+              invalid: 'debe tener formato .png .jpg o .jpeg'
+            registration_image:
+              less_than: 'debe pesar menos que %{count}'
+            registration_image_content_type:
+              invalid: 'debe tener formato .png .jpg o .jpeg'
+            registration_pdf:
+              less_than: 'debe pesar menos que %{count}'
+            registration_pdf_content_type:
+              invalid: 'debe tener formato .pdf'

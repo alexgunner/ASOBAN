@@ -1,0 +1,83 @@
+<%= bootstrap_form_for(@event, html: { multipart: true }) do |f| %>
+
+    <%= f.text_field :title %>
+
+    <%= f.text_area :description, :class => "tinymce", :rows => 10 %>
+
+    <%= f.file_field :picture %>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-md-8">
+        <%= f.file_field :registration_image %>
+      </div>
+      <div class="col-md-4">
+        <% if @event.registration_image.present? %>
+          <label for="event_delete_registration_image"> Eliminar? </label>
+          <div class="onoffswitch" style="margin-left: 0; margin-right: 0;">
+            <input type="checkbox" name="event[delete_registration_image]" class="onoffswitch-checkbox" id="event_delete_registration_image">
+            <label class="onoffswitch-label" for="event_delete_registration_image"></label>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-md-8">
+        <%= f.file_field :registration_pdf %>
+      </div>
+      <div class="col-md-4">
+        <% if @event.registration_pdf.present? %>
+          <label for="event_delete_registration_pdf"> Eliminar? </label>
+          <div class="onoffswitch" style="margin-left: 0; margin-right: 0;">
+            <input type="checkbox" name="event[delete_registration_pdf]" class="onoffswitch-checkbox" id="event_delete_registration_pdf">
+            <label class="onoffswitch-label" for="event_delete_registration_pdf"></label>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <%= f.text_field :sponsors_title %>
+
+    <%= f.text_field :registration_title %>
+
+    <%= f.text_field :agenda_title %>
+
+    <%= f.text_field :speakers_title %>
+
+  <div class="actions">
+    <%= f.submit "Aceptar", class: 'btn btn-asoban' %>
+    <%= link_to "Volver", '/events', class: "btn btn-asoban-inverse" %>
+  </div>
+<% end %>
+
+<%# tinymce :language => 'es', branding: false %>
+
+<script type="text/javascript">
+  //<![CDATA[
+  (function() {
+    function initTinyMCE() {
+      if (typeof tinyMCE != 'undefined') {
+        tinyMCE.init({
+          selector: "textarea.tinymce",
+          language: "es",
+          branding: false,
+          setup : function(ed) {
+            ed.on('init', function(args) {
+              fixSidebar();
+            });
+          }
+        });
+      } else {
+        setTimeout(initTinyMCE, 50);
+      }
+    }
+
+    initTinyMCE();
+  })();
+
+  //]]>
+</script>

@@ -1,0 +1,9 @@
+<h1 class="text-center">Panel de control</h1>
+<% if notice.present? %>
+  <div class="alert alert-asoban">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <div id="notice"> <%= notice %> </div>
+  </div>
+<% end %>
+
+<%= render 'dashboard_menu' %>

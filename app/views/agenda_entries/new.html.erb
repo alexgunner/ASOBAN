@@ -1,0 +1,27 @@
+
+<% if notice.present? %>
+  <div class="alert alert-asoban">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <div id="notice"> <%= notice %> </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+    <div class="box">
+      <div class="box-header">
+				<h2>Agregar documento a la agenda del evento <%= @event.title %></h2>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <%= render 'form', agenda_entry: @agenda_entry %>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <%= link_to 'Volver a edicion del evento', edit_event_path(@event), class: 'btn btn-asoban pull-right' %>
+        <%= link_to 'Continuar creacion de auspiciadores', new_event_sponsor_path(@event), class: 'btn btn-asoban' %>
+      </div>
+    </div>
+    <!-- /.box -->
+  </div>
+</div>

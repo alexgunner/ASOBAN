@@ -1,0 +1,20 @@
+<section class="standalone-section">
+  <div class="container white-bg" style="min-height:60vh;">
+    <h2>Busqueda</h2>
+
+    <% if @results.blank? && !params[:search].blank?%>
+      <h4>No se encontro informacion relacionada con "<%= params[:search] %>"</h4>
+    <% else %>
+      <h4>Se <%= if @results.count > 1 then 'encontraron' else 'encontró' end %> <%= @results.count %> resultado<%= put_s_if_needed @results.count %> relacionado<%= put_s_if_needed @results.count %> con "<%= params[:search] %>"</h4>
+      <table class="table table-hover">
+        <% @results.each do |res| %>
+            <tr>
+              <td><h4><%= object_from_pg_document(res).model_name.human %>:</h4></td>
+              <td><h5 style="text-decoration:underline;"><%= link_to strip_tags(res.content.gsub('%', ' - ')), object_from_pg_document(res) %></h5></td>
+            </tr>
+        <% end %>
+      </table>
+    <% end %>
+
+  </div>
+</section>

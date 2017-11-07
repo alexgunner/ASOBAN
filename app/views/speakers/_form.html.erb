@@ -1,0 +1,16 @@
+<%= bootstrap_form_for([@event, @speaker]) do |f| %>
+
+    <%= f.text_field :title %>
+
+    <%= f.file_field :image %>
+
+    <%= f.file_field :pdf %>
+
+    <%= f.hidden_field :event_id, value: @event.id %>
+
+
+  <div class="actions">
+    <%= f.submit 'Aceptar', class: 'btn btn-asoban' %>
+    <%= link_to 'Volver', event_speakers_path, class: 'btn btn-asoban-inverse' %>
+  </div>
+<% end %>

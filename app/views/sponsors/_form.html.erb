@@ -1,0 +1,11 @@
+<%= bootstrap_form_for([@event, @sponsor]) do |f| %>
+
+  <%= f.file_field :image %>
+
+  <%= f.hidden_field :event_id, value: @event.id %>
+
+  <div class="actions">
+    <%= f.submit 'Aceptar', class: 'btn btn-asoban' %>
+    <%= link_to 'Volver', event_sponsors_path(@event), class: 'btn btn-asoban-inverse' %>
+  </div>
+<% end %>

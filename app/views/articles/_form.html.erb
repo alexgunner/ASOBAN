@@ -1,0 +1,30 @@
+<%= bootstrap_form_for(article) do |f| %>
+  <% if article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+      <ul>
+      <% article.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_field :title, label: "Título" %>
+  </div>
+
+  <div class="field">
+    <%= f.text_area :content, label: "Contenido" %>
+  </div>
+
+  <div class="field">
+    <%= f.select(:category_id, options_from_collection_for_select(@categories,'id', 'name'), class: "form-control",:prompt => "Seleccionar Categoría",label: "Categoría")%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Aceptar", class: "btn btn-asoban" %>
+    <%= link_to "Volver", '/articles', class: "btn btn-asoban-inverse" %>
+  </div>
+<% end %>

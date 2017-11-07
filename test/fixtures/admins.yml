@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  can_manage_contact: false
+  can_manage_faq: false
+  can_manage_about: false
+  can_manage_articles: false
+  can_manage_events: false
+  can_manage_links: false
+  can_manage_multimedia: false
+  can_manage_carousel: false
+  can_manage_newsletter: false
+
+two:
+  first_name: MyString
+  last_name: MyString
+  can_manage_contact: false
+  can_manage_faq: false
+  can_manage_about: false
+  can_manage_articles: false
+  can_manage_events: false
+  can_manage_links: false
+  can_manage_multimedia: false
+  can_manage_carousel: false
+  can_manage_newsletter: false

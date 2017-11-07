@@ -1,0 +1,222 @@
+
+<style>
+  .contact-row {
+    flex-wrap: wrap;
+  }
+  .contact-box {
+    display: flex;
+    flex-direction: column;
+    background-color: #ededed;
+    margin: 0 30px 10px 15px;
+  }
+  .contact-box .box {
+    margin-bottom: 13px;
+  }
+  .contact-box .box .one, .contact-box .box .two {
+    padding-right: 8px;
+  }
+  .contact-box .box .one p, .contact-box .box .two p {
+    margin: 0;
+  }
+  .contact-box .box .one {
+    display: inline-block;
+    width: 40%;
+    margin-right: 21px;
+    vertical-align: top;
+  }
+  .contact-box .box .one p {
+    font-weight: 700;
+  }
+  .contact-box .box .two {
+    display: inline-block;
+    position: relative;
+    width: 50%;
+  }
+  .contact-box.light h3 {
+    color: #000f38;
+  }
+  .contact-box.light .one p {
+    color: #000f38;
+  }
+  .contact-box.light .two p {
+    color: #000f38;
+  }
+  .map-wrapper {
+    margin-top: auto;
+  }
+</style>
+
+<section class="contacts standalone-section">
+  <div class="container">
+    <h1>Contactos</h1>
+    <div class="row summary-row contact-row" style="margin-left:0;">
+      <% @contacts.each do |contact| %>
+        <div class="contact-box col-xs-12 col-sm-5 col-md-5">
+          <h3><%= contact.city %></h3>
+          <div class="vertical-space-10px"></div>
+          <div class="box">
+            <% unless contact.address.blank? %>
+            <div class="one"><p>Dirección:</p></div>
+            <div class="two"><p><%= contact.address %></p></div>
+            <% end %>
+          </div>
+          <div class="box">
+            <% unless contact.phone_numbers.blank? %>
+              <div class="one"><p class="uppercase text-nowrap">Telefonos:</p></div>
+              <div class="two">
+                <% contact.phone_numbers.split('%').each do |phone| %>
+                  <p><%= phone %></p>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <div class="box">
+            <% unless contact.emails.blank? %>
+              <div class="one"><p>Email:</p></div>
+              <div class="two">
+                <% contact.emails.split('%').each do |email| %>
+                  <p><%= email %></p>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <% unless contact.fax.blank? %>
+            <div class="box">
+              <div class="one"><p>Fax:</p></div>
+              <div class="two"><p><%= contact.fax %></p></div>
+            </div>
+          <% end %>
+          <% unless contact.mailbox.blank? %>
+            <div class="box">
+              <div class="one"><p>Casilla Postal:</p></div>
+              <div class="two"><p><%= contact.mailbox %></p></div>
+            </div>
+          <% end %>
+          <% unless contact.latitude.blank? %>
+            <div class="map-wrapper">
+              <div id="<%= "contact_map_" + contact.id.to_s %>" style="width: 100%; height: 200px;"></div>
+              <script type="text/javascript">
+                var handler<%= contact.id %>;
+                $(document).on('turbolinks:load', function(){
+                  gmap_show(<%== contact.to_json %>);
+                });
+              </script>
+            </div>
+          <% end %>
+          <div class="vertical-space-10px"></div>
+        </div>
+      <% end %>
+    </div>
+
+    <center><h2>Formulario de contacto</h2></center>
+    <%= bootstrap_form_for(@message) do |f| %>
+      <% if @message.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+          <ul>
+          <% @message.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="col-lg-6">
+        <%= f.text_field :name, label: 'Nombre' %>
+        <span id="name_error" style="color: red;"></span>
+      </div>
+
+      <div class="col-lg-6">
+        <%= f.text_field :lastname, label: 'Apellidos' %>
+        <span id="lastname_error" style="color: red;"></span>
+      </div>
+
+      <div class="col-lg-6">
+        <%= f.text_field :email, label: 'Correo electrónico' %>
+        <span id="email_error" style="color: red;"></span>
+      </div>
+
+      <div class="col-lg-6">
+        <%= f.number_field :phone, label: 'Teléfono' %>
+        <span id="phone_error" style="color: red;"></span>
+      </div>
+
+      <div class="col-lg-12">
+        <%= f.text_area :message, label: 'Mensaje' %>
+        <span id="message_error" style="color: red;"></span>
+      </div>
+
+      <div class="col-lg-12">
+        <center><%= recaptcha_tags %></center>
+      </div>
+
+      <div class="actions">
+        <center><%= f.submit 'Enviar Mensaje', class: 'btn btn-asoban', id: "send_message" %></center>
+      </div>
+    <% end %>
+
+  </div>
+</section>
+
+<div class="vertical-space-50px">
+
+</div>
+
+<script type="text/javascript">
+
+  $("#send_message").hide();
+  
+  $('#message_email').on("change paste keyup", function() {
+    $("#email_error").empty();
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    var valid_email = regex.test($(this).val());
+    if(valid_email==false){
+      $("#email_error").append("El correo electrónico es incorrecto");
+      $("#send_message").hide();
+    } else {
+      $("#send_message").show();
+    }
+  });
+
+  $('#message_name').on("change paste keyup", function() {
+    $("#name_error").empty();
+    if($("#message_name").val().length < 3){
+      $("#name_error").append("El nombre es muy corto, mínimo 3 caracteres");
+      $("#send_message").hide();
+    } else {
+      $("#send_message").show();
+    }
+  });
+
+  $('#message_lastname').on("change paste keyup", function() {
+    $("#lastname_error").empty();
+    if($("#message_lastname").val().length < 3){
+      $("#lastname_error").append("Los apellidos son muy cortos, mínimo 3 caracteres");
+      $("#send_message").hide();
+    } else {
+      $("#send_message").show();
+    }
+  });
+
+  $('#message_phone').on("change paste keyup", function() {
+    $("#phone_error").empty();
+    if($("#message_phone").val().length < 7){
+      $("#phone_error").append("El teléfono es muy corto, mínimo 7 caracteres");
+      $("#send_message").hide();
+    } else {
+      $("#send_message").show();
+    }
+  });
+
+  $('#message_message').on("change paste keyup", function() {
+    $("#message_error").empty();
+    if($("#message_message").val().length < 10){
+      $("#message_error").append("Mensaje muy corto, mínimo 10 caracteres");
+      $("#send_message").hide();
+    } else {
+      $("#send_message").show();
+    }
+  });
+
+</script>

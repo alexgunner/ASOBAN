@@ -1,0 +1,57 @@
+<% contacts = Contact.all %>
+<style>
+  .footer-img {
+    width: 100%;
+    max-width: 400px;
+    max-height: 400px;
+    vertical-align: middle;
+  }
+</style>
+<footer>
+<!-- START FOOTER SECTION -->
+   <div class="fbdr">
+      <div class="container-fluid">
+         <div class="row">
+          <% if request.original_url == "http://localhost:3000/" or request.original_url == "http://ec2-34-215-68-72.us-west-2.compute.amazonaws.com/" %>
+            <div class="col-md-8">
+              <div class="row">
+                <h2>Contactos</h2>
+                <% if !contacts.nil? %>
+                  <% contacts[0..2].each do |contact| %>
+                     <div class="col-md-3 address">
+                         <h3><%= contact.city %></h3>
+                         <p>
+                           <% unless contact.address.blank? %><strong>Dirección: </strong><%= contact.address %><% end %>
+                           <br>
+                           <% unless contact.phone_numbers.blank? %><strong>Telf: </strong><%= contact.phone_numbers.split('%').join(' - ') %><% end %><br>
+                           <% unless contact.emails.blank? %><strong>Email: </strong><%= contact.emails.split('%').join(' ') %><% end %><br>
+                           <% unless contact.fax.blank? %><strong>Fax: </strong><%= contact.fax %><% end %><br>
+                           <% unless contact.mailbox.blank? %><strong>Casilla: </strong><%= contact.mailbox %><% end %><br>
+                         </p>
+                     </div>
+                  <% end %>
+                <% end %>
+                <div class="col-md-3 address">
+                    <h3>Preguntas Frecuentes</h3>
+                    <p>Resuelve tus dudas siguiendo <a style="color: #b49a78;" href="/faq">este enlace.</a></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-3 text-center">
+              <span class="helper"></span>
+              <img class="footer-img" src="/img/asoban-footer-copy.png" alt="">
+            </div>
+          <% else %>
+            <div class="col-md-5"></div>
+            <div class="col-md-2 text-center">
+              <span class="helper"></span>
+              <img class="footer-img" src="/img/asoban-footer-copy.png" alt="">
+            </div>
+          <% end %>
+
+         </div>
+      </div>
+   </div>
+  <!-- / START FOOTER SECTION -->
+</footer>

@@ -1,0 +1,45 @@
+<h1 class="text-center">Categorías</h1>
+
+<% if notice.present? %>
+  <div class="alert alert-asoban">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <div id="notice"> <%= notice %> </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+    <div class="box">
+      <div class="box-header">
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th colspan="2"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @categories.each do |category| %>
+              <tr>
+                <td><%= category.name %></td>
+                <td><%= category.descroption %></td>
+                <td><%= link_to 'Editar', edit_category_path(category), class: 'btn btn-asoban' %></td>
+                <td><%= link_to 'Eliminar', category, method: :delete, data: { confirm: 'Está seguro que desea borrar esta categoría?' }, class: 'btn btn-asoban-inverse' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <%= link_to 'Nueva categoría', new_category_path, class: "btn btn-asoban"%>
+      </div>
+    </div>
+    <!-- /.box -->
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<%= bootstrap_form_for(carousel, html: { multipart: true }) do |f| %>
+  <% if carousel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(carousel.errors.count, "error") %> prohibited this carousel from being saved:</h2>
+
+      <ul>
+      <% carousel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.file_field :pic1, label: 'Imagen 1' %>
+  </div>
+
+  <div class="field">
+    <%= f.file_field :pic2, label: 'Imagen 2' %>
+  </div>
+
+  <div class="field">
+    <%= f.file_field :pic3, label: 'Imagen 3' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Aceptar', class: 'btn btn-asoban' %>
+    <%= link_to 'Volver', '/carousels', class: 'btn btn-asoban-inverse' %>
+  </div>
+<% end %>

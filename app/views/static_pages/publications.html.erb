@@ -1,0 +1,31 @@
+
+<style media="screen">
+  .publication-title-box {
+  }
+  .publication-title {
+  }
+  .publication-content {
+  }
+  .publication-button-box {
+  }
+  .publication-button {
+    width: 95%;
+    margin-bottom: 2px;
+  }
+</style>
+
+<section class="publications-and-statistics standalone-section">
+  <div class="container">
+    <h1>Publicaciones</h1>
+    <% Article.all.each do |article| %>
+      <% if article.category.name == "Publicaciones" %>
+        <%= render :partial => 'partials/single_publication', :locals => {:article => article} %>
+        <div class="vertical-space-10px"></div>
+      <% end %>
+    <% end %>
+    <div class="vertical-space-50px"></div>
+  </div>
+</section>
+
+<div class="vertical-space-50px"></div>
+<div class="vertical-space-50px"></div>

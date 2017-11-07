@@ -1,0 +1,76 @@
+<%= form_for(certification) do |f| %>
+  <% if certification.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(certification.errors.count, "error") %> prohibited this certification from being saved:</h2>
+
+      <ul>
+      <% certification.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :lastname %>
+    <%= f.text_field :lastname %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ci %>
+    <%= f.text_field :ci %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= f.label :institution_name %>
+    <%= f.text_field :institution_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :nit %>
+    <%= f.text_field :nit %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :legal_address %>
+    <%= f.text_field :legal_address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :charge %>
+    <%= f.text_field :charge %>
+  </div>
+
+  
+
+  <div class="field">
+    <%= f.label :observations %>
+    <%= f.text_field :observations %>
+  </div>
+
+  <%= recaptcha_tags %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,8 @@
+<div class="field form-group input-group">
+  <%= f.text_field_without_bootstrap :phone_numbers, :value => phone_number, class: 'form-control phone_number-field', name: 'contact[phone_numbers][]'  %>
+  <span class="input-group-btn">
+    <button onclick="deleteClosestInputGroup(this)" tabindex="-1" class="btn btn-asoban-inverse" type="button">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+  </span>
+</div>

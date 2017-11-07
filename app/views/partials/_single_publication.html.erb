@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="publication-summary">
+    <div class="col-md-4 publication-details">
+      <h2 class="bold-heading"><h3><%= article.title %></h3></h2>
+      <hr>
+      <div class="row">
+        <div class="col-xs-6  col-md-6 button-box">
+          <a class="summary-button publication-button publication-button-text">Leer Más</a>
+        </div>
+        <div class="col-xs-5  col-md-6 button-box">
+          <% if false %>
+            <a href="<%= article_url(article) %>" data-toggle="modal" data-target="#<%= article.id %>" class="summary-button publication-button">Ver PDF</a>
+          <% end %>
+          <a href="<%= article_url(article) %>" class="summary-button publication-button">Ver publication</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 publication-content">
+      <p>
+        <%= article.content[0..480] %>
+      </p>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal-header, .close {
+    background-color: rgba(0, 15, 56, 0.85);
+    color: white;
+    text-align: center;
+  }
+  .modal-footer {
+    background-color: #f9f9f9;
+  }
+  .modal-body {
+    height: 75vh;
+  }
+  .modal-header h4 {
+    color: white;
+  }
+</style>
+
+<% if false %>
+  <div class="container">
+    <div class="modal fade" id="<%= article.id %>" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4> Titulo del Documento </h4>
+            </div>
+          <div class="modal-body">
+            <iframe src="http://docs.google.com/gview?url=http://<%= request.host + article.pdf.url(:original, timestamp:false)%>&embedded=true" width="100%" height="100%" style="border: none;">
+              El navegador actual no soporta la visualizacion de PDFs. Para ver el documento puede descargarlo haciendo click en este boton: <a href="estatutos/ESTATUTOS_NUEVOS_APROBADOS_22ABR14_FINAL_.pdf">Descargar PDF</a>
+            </iframe>
+          </div>
+          <div class="modal-footer">
+            Para descargar el pdf haga <a href="estatutos/ESTATUTOS_NUEVOS_APROBADOS_22ABR14_FINAL_.pdf" download class="btn btn-asoban">click aquí.</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,13 @@
+<%= bootstrap_form_for(link, html: { multipart: true }) do |f| %>
+
+  <%= f.text_field :title %>
+
+  <%= f.text_field :link %>
+
+  <%= f.file_field :image %>
+
+  <div class="actions">
+    <%= f.submit "Aceptar", class: "btn btn-asoban" %>
+    <%= link_to "Volver", '/links', class: "btn btn-asoban-inverse" %>
+  </div>
+<% end %>

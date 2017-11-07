@@ -1,0 +1,131 @@
+<header class="hide-bg">
+<!-- header -->
+   <div id="mainNav" class="navbar-fixed-top">
+   	<!-- top-header -->
+      <div class="top-header">
+         <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="logo">
+              <a href="/"><img src="/img/logo-web-nav-med.png" alt="logo"/></a>
+            </div>
+         </div>
+         <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="col-xs-2 col-sm-1 col-md-1 col-md-offset-8 col-sm-offset-5">
+               <div class="top-header-icon">
+                  <div class="col-xs-2 col-sm-2 col-md-2 text-center">
+                     <a target="_blank" href="https://www.facebook.com/asobanbolivia/"><i class="fa fa-facebook" style="font-size: 200%" aria-hidden="true"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-xs-2 col-sm-1 col-md-1">
+               <div class="top-header-icon">
+                  <div class="col-xs-2 col-sm-2 col-md-2 text-center">
+                     <a target="_blank" href="https://twitter.com/AsobanBolivia"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-xs-2 col-sm-1 col-md-1">
+               <div class="top-header-icon">
+                  <div class="col-xs-2 col-sm-2 col-md-2 text-center">
+                     <a target="_blank" href="https://www.youtube.com/channel/UC7JDAreE2l0Aq6iLYGZyR7A"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="col-xs-2 col-sm-1 col-md-1">
+               <div class="top-header-icon">
+                  <div class="col-xs-2 col-sm-2 col-md-2 text-center">
+                     <a target="_blank" href="https://www.linkedin.com/company/asociaci%C3%B3n-de-bancos-privados-de-bolivia"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-xs-2 col-sm-2 col-md-2">
+          <a href="https://www.descubre.bo/" target="_blank"><img src="/img/descubre.png" class="img-responsive"></a>
+         </div>
+         <!-- /top-header -->
+
+      </div>
+      <!--  nav  -->
+      <nav class="navbar navbar-inverse navbar-default">
+         <!-- Brand and toggle get grouped for better mobile display -->
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#asoban-navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+         </div>
+         <!-- logo2 -->
+          <div class="logo2">
+            <a href="/">
+              <img src="/img/logo-web-nav-med.png" alt="logo"/>
+            </a>
+          </div>
+          <!-- /logo2 -->
+         <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="row collapse navbar-collapse" id="asoban-navbar" data-hover="dropdown" data-animations="fadeIn fadeInLeft fadeInUp fadeInRight">
+            <ul class="nav navbar-nav">
+              <li class="search-field-box-responsive">
+                <div class="inner-addon right-addon">
+                  <%= form_tag(search_path, :method => "get", id: "search-form") do %>
+                    <i class="fa fa-search search-icon"></i>
+                    <%= text_field_tag :search, params[:search], class: "form-control search-field", :maxlength => 20 %>
+                  <% end %>
+                </div>
+              </li>
+              <li class="nav-inicio">
+                <a href="/">Inicio</a>
+              </li>
+              <li class="nav-nosotros">
+                <a href="/about">Nosotros</a>
+              </li>
+              <li class="nav-publicaciones-y-estadisticas">
+                <a href="/publications">Publicaciones y Estadísticas</a>
+                <ul class="dropdown-menu dropdownhover-bottom" role="menu">
+                  <li class="dropdown-nav-sala-de-prensa"><a href="/news">Sala de Prensa</a></li>
+                  <li class="dropdown-nav-multimedia"><a href="/multimedia">Multimedia</a></li>
+                  <li class="dropdown-nav-eventos"><a href="/event">Eventos</a></li>
+                  <li class="dropdown-nav-contacto"><a href="/contact">Contacto</a></li>
+                </ul>
+              </li>
+              <li class="nav-eventos">
+                <a href="/event">Eventos</a>
+              </li>
+              <li class="nav-sala-de-prensa">
+                <a href="/news">Sala de Prensa</a>
+              </li>
+              
+              <li class="nav-multimedia">
+                <a href="/multimedia">Multimedia</a>
+              </li>
+              <li class="nav-contacto">
+                <a href="/contact">Contacto</a>
+              </li>
+              <li class="dropdown nav-more">
+                <a href="index.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span>Más <i class="fa fa-angle-down"></i></span></a>
+                <ul class="dropdown-menu dropdownhover-bottom" role="menu">
+                  <li class="dropdown-nav-sala-de-prensa"><a href="/news">Sala de Prensa</a></li>
+                  <li class="dropdown-nav-multimedia"><a href="/multimedia">Multimedia</a></li>
+                  <li class="dropdown-nav-eventos"><a href="/event">Eventos</a></li>
+                  <li class="dropdown-nav-contacto"><a href="/contact">Contacto</a></li>
+                </ul>
+              </li>
+              <li class="search-field-box">
+                <div class="inner-addon right-addon">
+                  <%= form_tag(search_path, :method => "get", id: "search-form") do %>
+                    <i class="fa fa-search search-icon"></i>
+                    <%= text_field_tag :search, params[:search], class: "form-control search-field", :maxlength => 20 %>
+                  <% end %>
+                </div>
+              </li>
+            </ul>
+          </ul>
+            <!-- /.navbar-collapse -->
+        </div>
+
+         </div>
+      </nav>
+      <!--  /nav  -->
+   </div>
+    <!-- /header -->
+</header>

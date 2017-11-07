@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @certification.name %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @certification.lastname %>
+</p>
+
+<p>
+  <strong>Ci:</strong>
+  <%= @certification.ci %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @certification.email %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @certification.city %>
+</p>
+
+<p>
+  <strong>Institution name:</strong>
+  <%= @certification.institution_name %>
+</p>
+
+<p>
+  <strong>Nit:</strong>
+  <%= @certification.nit %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @certification.phone %>
+</p>
+
+<p>
+  <strong>Legal address:</strong>
+  <%= @certification.legal_address %>
+</p>
+
+<p>
+  <strong>Charge:</strong>
+  <%= @certification.charge %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @certification.start_date %>
+</p>
+
+<p>
+  <strong>Observations:</strong>
+  <%= @certification.observations %>
+</p>
+
+<%= link_to 'Edit', edit_certification_path(@certification) %> |
+<%= link_to 'Back', certifications_path %>

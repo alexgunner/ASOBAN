@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Twitter:</strong>
+  <%= @card.twitter %>
+</p>
+
+<p>
+  <strong>Certifications:</strong>
+  <%= @card.certifications %>
+</p>
+
+<p>
+  <strong>Newsfeed:</strong>
+  <%= @card.newsfeed %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @card.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @card.content %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @card.url %>
+</p>
+
+<%= link_to 'Edit', edit_card_path(@card) %> |
+<%= link_to 'Back', cards_path %>

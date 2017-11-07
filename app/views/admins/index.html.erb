@@ -1,0 +1,68 @@
+
+<h1 class="tect-center">Administradores</h1>
+
+<% if notice.present? %>
+  <div class="alert alert-asoban">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <div id="notice"> <%= notice %> </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Correo</th>
+              <th>Puede administrar contactos</th>
+              <th>Puede administrar preguntas</th>
+              <th>Puede administrar nosotros</th>
+              <th>Puede administrar articulos</th>
+              <th>Puede administrar eventos</th>
+              <th>Puede administrar enlaces</th>
+              <th>Puede administrar multimedia</th>
+              <th>Puede administrar carrusel</th>
+              <th>Puede administrar boletin</th>
+              <th>Puede administrar administradores</th>
+              <th colspan="2"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @admins.each do |admin| %>
+              <tr>
+                <td><%= admin.first_name  %></td>
+                <td><%= admin.last_name  %></td>
+                <td><%= admin.user.email  %></td>
+                <td><%= if admin.can_manage_contact then 'Si' else 'No' end %></td>
+                <td><%= if admin.can_manage_faq then 'Si' else 'No' end %></td>
+                <td><%= if admin.can_manage_about then 'Si' else 'No' end %></td>
+                <td><%= if admin.can_manage_articles then 'Si' else 'No' end %></td>
+                <td><%= if admin.can_manage_events then 'Si' else 'No' end %></td>
+                <td><%= if admin.can_manage_links then 'Si' else 'No' end %></td>
+                <td><%= if admin.can_manage_multimedia then 'Si' else 'No' end %></td>
+                <td><%= if admin.can_manage_carousel then 'Si' else 'No' end %></td>
+                <td><%= if admin.can_manage_newsletter then 'Si' else 'No' end %></td>
+                <td><%= if admin.can_manage_admins then 'Si' else 'No' end %></td>
+                <td><%= link_to 'Editar', edit_admin_path(admin), class: 'btn btn-asoban' %></td>
+                <td><%= link_to 'Eliminar', admin, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-asoban' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <%= link_to 'Crear Administrador', new_admin_path, class: 'btn btn-asoban' %>
+      </div>
+    </div>
+    <!-- /.box -->
+  </div>
+</div>

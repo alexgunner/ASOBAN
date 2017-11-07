@@ -1,0 +1,44 @@
+<%= bootstrap_form_for(about, html: { multipart: true }) do |f| %>
+  <% if about.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(about.errors.count, "error") %> prohibited this about from being saved:</h2>
+
+      <ul>
+      <% about.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= f.text_area :mission, rows: 5, label: "Misión" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.text_area :vision, rows: 5, label: "Visión" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.text_area :history, rows: 5, label: "Historia" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.text_area :philosophy, rows: 5, label: "Filosofía" %>
+  </div>
+
+  <div class="field form-group float-label-control">
+    <%= f.text_field :document_title, placeholder: 'Titulo del documento', label: "Título del documento" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.file_field :statute_pdf, label: "Archivo"  %>
+  </div>
+
+  <div class="actions">
+    <div class="text-center">
+      <%= f.submit 'Aceptar', class: 'btn btn-success' %>
+      <%= link_to "Volver", '/abouts', class: "btn btn-asoban-inverse" %>
+    </div>
+  </div>
+<% end %>

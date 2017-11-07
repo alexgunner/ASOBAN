@@ -1,0 +1,175 @@
+<header class='main-header'>
+  <!-- Logo -->
+  <a href="/dashboard" class="logo">
+    <!-- mini logo for sidebar mini 50x50 pixels -->
+    <span class="logo-mini"><b>A</b>B</span>
+    <!-- logo for regular state and mobile devices -->
+    <span class="logo-lg"><b>ASOBAN</b></span>
+  </a>
+  <!-- Header Navbar: style can be found in header.less -->
+  <nav class="navbar navbar-static-top">
+    <!-- Sidebar toggle button-->
+    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+      <span class="sr-only">Toggle navigation</span>
+    </a>
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <!-- User Account: style can be found in dropdown.less -->
+        <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="hidden-xs"><%= [current_user.admin.first_name, current_user.admin.last_name].join(' ') %></span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                Con esta cuenta se puede editar las siguientes secciones
+              </li>
+              <!-- Menu Body -->
+              <li class="user-body">
+                <div class="row">
+                  <% if current_user.admin.can_manage_contact %>
+                    <div class="col-xs-4 text-center">
+                      <div class="user-model btn-flat btn-default">
+                        <a href="#">Contactos</a>
+                      </div>
+                    </div>
+                  <% end %>
+
+                  <% if current_user.admin.can_manage_faq %>
+                    <div class="col-xs-4 text-center">
+                      <div class="user-model btn-flat btn-default">
+                        <a href="#">Preguntas</a>
+                      </div>
+                    </div>
+                  <% end %>
+
+                  <% if current_user.admin.can_manage_about %>
+                    <div class="col-xs-4 text-center">
+                      <div class="user-model btn-flat btn-default">
+                        <a href="#">Nosotros</a>
+                      </div>
+                    </div>
+                  <% end %>
+
+                  <% if current_user.admin.can_manage_articles %>
+                    <div class="col-xs-4 text-center">
+                      <div class="user-model btn-flat btn-default">
+                        <a href="#">Artículos</a>
+                      </div>
+                    </div>
+                  <% end %>
+
+                  <% if current_user.admin.can_manage_events %>
+                    <div class="col-xs-4 text-center">
+                      <div class="user-model btn-flat btn-default">
+                        <a href="#">Eventos</a>
+                      </div>
+                    </div>
+                  <% end %>
+
+                  <% if current_user.admin.can_manage_links %>
+                    <div class="col-xs-4 text-center">
+                      <div class="user-model btn-flat btn-default">
+                        <a href="#">Enlaces</a>
+                      </div>
+                    </div>
+                  <% end %>
+
+                  <% if current_user.admin.can_manage_multimedia %>
+                    <div class="col-xs-4 text-center">
+                      <div class="user-model btn-flat btn-default">
+                        <a href="#">Multimedia</a>
+                      </div>
+                    </div>
+                  <% end %>
+
+                  <% if current_user.admin.can_manage_carousel %>
+                    <div class="col-xs-4 text-center">
+                      <div class="user-model btn-flat btn-default">
+                        <a href="#">Carrusel</a>
+                      </div>
+                    </div>
+                  <% end %>
+
+                  <% if current_user.admin.can_manage_newsletter %>
+                    <div class="col-xs-4 text-center">
+                      <div class="user-model btn-flat btn-default">
+                        <a href="#">Boletín</a>
+                      </div>
+                    </div>
+                  <% end %>
+
+                  <% if current_user.admin.can_manage_admins %>
+                    <div class="col-xs-4 text-center">
+                      <div class="user-model btn-flat btn-default">
+                        <a href="#">Administradores</a>
+                      </div>
+                    </div>
+                  <% end %>
+
+                  <% if current_user.admin.can_manage_boxes %>
+                    <div class="col-xs-4 text-center">
+                      <div class="user-model btn-flat btn-default">
+                        <a href="#">Tarjetas iniciales</a>
+                      </div>
+                    </div>
+                  <% end %>
+
+                  <% if current_user.admin.can_manage_messages %>
+                    <div class="col-xs-4 text-center">
+                      <div class="user-model btn-flat btn-default">
+                        <a href="#">Mensajes</a>
+                      </div>
+                    </div>
+                  <% end %>
+
+                  <% if current_user.admin.can_manage_categories %>
+                    <div class="col-xs-4 text-center">
+                      <div class="user-model btn-flat btn-default">
+                        <a href="#">Categorias</a>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+                <!-- /.row -->
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <%= link_to edit_user_registration_path, class: 'btn btn-app btn-asoban' do %>
+                    <i class="fa fa-edit"></i> Editar Cuenta
+                  <% end %>
+                </div>
+                <div class="pull-right">
+                  <%= link_to destroy_user_session_path, :method => :delete, class: 'btn btn-app btn-asoban-inverse' do %>
+                    <i class="fa fa-times"></i>Cerrar Sesión
+                  <% end %>
+                </div>
+              </li>
+            </ul>
+          </li>
+
+      </ul>
+    </div>
+  </nav>
+</header>
+<script type="text/javascript">
+$('.sidebar-toggle').click(function(){
+  if(window.innerWidth > 764){
+    if($('body').hasClass('sidebar-collapse')){
+      $('body').removeClass('sidebar-collapse');
+    }
+    else{
+      $('body').addClass('sidebar-collapse');
+    }
+  }
+  else {
+    if($('.main-sidebar').css('transform') === 'none'){
+      $('.main-sidebar').css('transform', 'translate(-230px, 0)')
+    }
+    else{
+      $('.main-sidebar').css('transform', 'none')
+    }
+  }
+});
+</script>

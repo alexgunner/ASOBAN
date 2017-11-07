@@ -1,0 +1,24 @@
+<%= bootstrap_form_for(box) do |f| %>
+  <% if box.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(box.errors.count, "error") %> prohibited this box from being saved:</h2>
+
+      <ul>
+      <% box.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.text_field :title, label: 'Título' %>
+
+  <%= f.text_area :description, label: 'Descripción' %>
+
+  <%= f.text_field :url, label: 'Enlace' %>
+
+  <div class="actions">
+    <%= f.submit "Aceptar", class: "btn btn-asoban" %>
+    <%= link_to "Volver", '/boxes', class: "btn btn-asoban-inverse" %>
+  </div>
+<% end %>

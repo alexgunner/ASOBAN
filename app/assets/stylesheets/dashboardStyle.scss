@@ -1,0 +1,150 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+@import "adminlte";
+@import "adminlte/skins/skin-blue";
+@import "iCheck/skins/flat/_all";
+@import "iCheck/skins/minimal/_all";
+@import "select2.css";
+
+$primary: #000f38;
+$navbar: #fff;
+$primary-letter-color: #fff;
+$secondary: #b49a78;
+$transparent-primary: rgba($primary, 0.7);
+/* Additions to template start here overrides are before the responsive media queries */
+
+body {
+  background-color: #ecf0f5;
+}
+
+.navbar-nav > .user-menu > .dropdown-menu > li.user-header {
+  height: unset;
+  font-weight: bold;
+  color: white;
+}
+
+.user-model {
+  padding: 7px;
+  margin: 1px;
+  word-wrap: break-word;
+  min-height: 60px;
+}
+
+.navbar-nav>.user-menu>.dropdown-menu {
+  width: 380px;
+}
+
+.bg-asoban {
+  background-color: $primary !important;
+  color: $secondary;
+}
+
+.modal-header, .close {
+  background-color: rgba(0, 15, 56, 0.85);
+  color: white;
+  text-align: center;
+}
+.modal-footer {
+  background-color: #f9f9f9;
+}
+.modal-body {
+  height: 75vh;
+}
+.modal-header h4 {
+  color: white !important;
+}
+
+p, label, a, li {
+  font-family: "Lato";
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto';
+}
+
+::selection {
+  background: $secondary;
+}
+
+.btn-asoban {
+  background-color: $primary;
+  color: $primary-letter-color;
+}
+
+.btn-asoban:visited {
+  background-color: rgba($primary, 0.8);
+  color: $primary-letter-color;
+}
+
+.btn-asoban:hover {
+  background-color: rgba($secondary, 0.9);
+  color: $primary;
+}
+
+.btn-asoban:active {
+  background-color: rgba($secondary, 0.8);
+  color: $primary;
+}
+
+.btn-asoban:focus {
+  background-color: rgba($primary, 0.8);
+  color: $primary-letter-color;
+}
+
+.btn-asoban-inverse {
+  background-color: $secondary;
+  color: $primary;
+}
+
+.btn-asoban-inverse:visited {
+  background-color: rgba($secondary, 0.8);
+  color: $primary;
+}
+
+.btn-asoban-inverse:hover {
+  background-color: rgba($primary, 0.9);
+  color: $primary-letter-color !important;
+}
+
+.btn-asoban-inverse:active {
+  background-color: rgba($primary, 0.8);
+  color: $secondary;
+}
+
+.btn-asoban-inverse:focus {
+  background-color: rgba($secondary, 0.8);
+  color: $primary;
+}
+
+.vertical-space-50px {
+  height: 50px;
+}
+.vertical-space-10px {
+  height: 10px;
+}
+
+
+h1, h2, h3, h4 {
+  color: #272d44 !important;
+}
+
+.actions {
+  text-align: center;
+}
+
+.alert-asoban {
+  background-color: rgba($primary, 0.8) !important;
+  color: white !important;
+  font-weight: bold;
+}
+
+.alert-asoban a {
+  color: #fff !important;
+  text-decoration: none;
+}
+
+.dashboard-menu-button {
+  min-width: 250px;
+  text-transform: none;
+}

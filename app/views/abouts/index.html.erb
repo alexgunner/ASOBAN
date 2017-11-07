@@ -1,0 +1,51 @@
+<h1 class="text-center">Nosotros</h1>
+
+<% if notice.present? %>
+  <div class="alert alert-asoban">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <div id="notice"> <%= notice %> </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+    <div class="box">
+      <div class="box-header">
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Misión</th>
+              <th>Visión</th>
+              <th>Historia</th>
+              <th>Filosofía</th>
+              <th>Título de documento de estatutos</th>
+              <th colspan="2"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @abouts.each do |about| %>
+              <tr>
+                <td><%= about.mission %></td>
+                <td><%= about.vision %></td>
+                <td><%= about.history %></td>
+                <td><%= about.philosophy %></td>
+                <td><%= about.document_title %></td>
+                <td><%= link_to 'Ver PDF', about.statute_pdf.url, class: 'btn btn-asoban', target: '_blank' %></td>
+                <td><%= link_to 'Editar', edit_about_path(about), class: 'btn btn-asoban' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <%= link_to 'Nueva noticia', new_article_path, class: "btn btn-asoban" %>
+      </div>
+    </div>
+    <!-- /.box -->
+  </div>
+</div>

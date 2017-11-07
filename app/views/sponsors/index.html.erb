@@ -1,0 +1,54 @@
+
+
+<h2 class="text-center">Auspiciadores del evento "<%= @event.title %>"</h2>
+
+<% if notice.present? %>
+  <div class="alert alert-asoban">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <div id="notice"> <%= notice %> </div>
+  </div>
+<% end %>
+
+
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+    <div class="box">
+      <div class="box-header">
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Imagen anexada</th>
+              <th colspan="2">Opciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @sponsors.each do |sponsor| %>
+              <tr>
+                <td><img style="max-width:150px;" src="<%= sponsor.image.url %>" alt=""></td>
+                <td><%= link_to 'Editar', edit_event_sponsor_path(@event, sponsor), class: 'btn btn-asoban' %></td>
+                <td><%= link_to 'Eliminar', event_sponsor_path(@event, sponsor), method: :delete,data: {
+                  confirm: 'Borrando Auspicio',
+                  'confirm-button-text': 'Si',
+                  'cancel-button-text': 'No',
+                  'confirm-button-color': '#66CD00',
+                  'sweet-alert-type': 'warning',
+                  text: 'Estas seguro?'
+                }, class: 'btn btn-asoban-inverse' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <%= link_to 'Ingresar nuevo auspicio', new_event_sponsor_path(@event), class: 'btn btn-asoban' %>
+        <%= link_to 'Ir a edicion del evento', edit_event_path(@event), class: 'btn btn-asoban-inverse' %>
+      </div>
+    </div>
+    <!-- /.box -->
+  </div>
+</div>

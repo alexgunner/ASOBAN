@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container white-bg">
+  <h2>Contacto de la ciudad de <%= @contact.city %></h2>
+  <p>
+    <strong>Direccion:</strong>
+    <%= @contact.address %>
+  </p>
+
+  <p>
+    <strong>Emails:</strong>
+      <% @contact.emails.split('%').each do |email| %>
+        <p><%= email %></p>
+      <% end %>
+  </p>
+
+  <p>
+    <strong>Telefonos:</strong>
+      <% @contact.phone_numbers.split('%').each do |phone_number| %>
+        <p><%= phone_number %></p>
+      <% end %>
+  </p>
+
+  <% unless @contact.fax.blank?%>
+    <p>
+      <strong>Fax:</strong>
+      <%= @contact.fax %>
+    </p>
+  <% end %>
+
+  <% unless @contact.fax.blank?%>
+    <p>
+      <strong>Casilla:</strong>
+      <%= @contact.mailbox %>
+    </p>
+  <% end %>
+
+  <%= link_to 'Editar', edit_contact_path(@contact), class: 'btn btn-asoban' %>
+  <%= link_to 'Atrás', contacts_path, class: 'btn btn-asoban' %>
+</div>

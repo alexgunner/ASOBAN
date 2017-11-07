@@ -1,0 +1,45 @@
+
+
+<h1 class="text-center">Tarjetas iniciales</h1>
+
+<% if notice.present? %>
+  <div class="alert alert-asoban">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <div id="notice"> <%= notice %> </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+    <div class="box">
+      <div class="box-header">
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Título</th>
+              <th>Descripción</th>
+              <th>Link</th>
+              <th colspan="1"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @boxes.each do |box| %>
+              <tr>
+                <td><%= box.title %></td>
+                <td><%= box.description %></td>
+                <td><%= box.url %></td>
+                <td><%= link_to 'Editar', edit_box_path(box), class: 'btn btn-asoban' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+</div>

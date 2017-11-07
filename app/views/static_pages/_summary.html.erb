@@ -1,0 +1,87 @@
+<section class="summary">
+  <div class="row summary-row">
+    <% @boxes.each do |box| %>
+      <div class="summary-box first-box col-xs-12 col-sm-6 col-md-3">
+        <h3><%= box.title %></h3>
+        <hr>
+        <p><%= box.description %></p>
+        <a href="/<%= box.url %>">Leer más&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></a>
+      </div>
+    <% end %>
+  </div>
+
+    <div class="row summary-row" style="max-height: 345px">
+      <% @cards.each do |card| %>
+        <% if card.certifications %>
+          <div class="col-xs-12 col-sm-12 col-md-4 summary-box certificate-box" >
+            <div class="row">
+              <div class="col-sm-12 col-md-7">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h3>Firma Digital</h3>
+                    <hr>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <a href="/certificates" class="certificate-button"><i class="fa fa-chevron-right"></i>&nbsp;&nbsp;Obtención</a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <a href="/certificates" class="certificate-button"><i class="fa fa-chevron-right"></i>&nbsp;&nbsp;Renovación</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-5 text-center">
+                <img src="img/symantec-transparent-small.png" alt="Symantec Logo" class="certificate-image">
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <% if card.newsfeed %>
+          <div class="col-xs-12 col-sm-12 col-md-4 summary-box newsletter-box text-center" >
+            <h2>Boletín de Noticias</h2>
+            <div class="form-group">
+              <p>Introduce tu correo para inscribirte al boletín de noticias de Asoban.</p>
+              <input type="text" name="new-mail" placeholder="Correo Electronico" class="form-control">
+              <center><%= recaptcha_tags %></center>
+              <button class="btn btn-primary" id="suscribe">Suscribirse</button>
+            </div>
+          </div>
+        <% end %>
+
+        <% if card.twitter %>
+          <div class="col-xs-12 col-sm-12 col-md-4 social-media-box" >
+            <a class="twitter-timeline" data-lang="es" data-link-color="#a38257" href="https://twitter.com/AsobanBolivia">Tweets by AsobanBolivia</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </div>
+        <% end %>
+
+        <% if card.newsfeed==false or card.certifications==false or card.twitter==false and card.title.present? %>
+          <div class="col-xs-12 col-sm-12 col-md-4 summary-box custom-content-box text-center" >
+            <h2><%= card.title %></h2>
+            <p>
+              <%= card.content %>
+            </p>
+
+            <% if !card.url.nil? %>
+              <a style="color: black" href="<%= card.url %>" target="_blank">Haz clic aquí</a>
+            <% end %>
+
+          </div>
+        <% end %>
+
+      <% end %>
+
+    </div>
+
+</section>
+
+<script type="text/javascript">
+  $( document ).ready(function() {
+    $("#suscribe").click(function(){
+      alert("Gracias por suscribirte a nuestro boletín");
+    });
+  });
+</script>

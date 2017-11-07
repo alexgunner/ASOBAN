@@ -1,0 +1,84 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fist name:</strong>
+  <%= @admin.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @admin.last_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Can manage contact:</strong>
+  <%= @admin.can_manage_contact %>
+</p>
+
+<p>
+  <strong>Can manage faq:</strong>
+  <%= @admin.can_manage_faq %>
+</p>
+
+<p>
+  <strong>Can manage about:</strong>
+  <%= @admin.can_manage_about %>
+</p>
+
+<p>
+  <strong>Can manage articles:</strong>
+  <%= @admin.can_manage_articles %>
+</p>
+
+<p>
+  <strong>Can manage events:</strong>
+  <%= @admin.can_manage_events %>
+</p>
+
+<p>
+  <strong>Can manage links:</strong>
+  <%= @admin.can_manage_links %>
+</p>
+
+<p>
+  <strong>Can manage multimedia:</strong>
+  <%= @admin.can_manage_multimedia %>
+</p>
+
+<p>
+  <strong>Can manage carousel:</strong>
+  <%= @admin.can_manage_carousel %>
+</p>
+
+<p>
+  <strong>Can manage newsletter:</strong>
+  <%= @admin.can_manage_newsletter %>
+</p>
+
+<p>
+  <strong>Can manage boxes:</strong>
+  <%= @admin.can_manage_boxes %>
+</p>
+
+<p>
+  <strong>Can manage categories:</strong>
+  <%= @admin.can_manage_categories %>
+</p>
+
+<p>
+  <strong>Can manage messages:</strong>
+  <%= @admin.can_manage_messages %>
+</p>
+
+<p>
+  <strong>Can manage admins:</strong>
+  <%= @admin.can_manage_admins %>
+</p>
+
+<%= link_to 'Edit', edit_admin_path(@admin) %> |
+<%= link_to 'Back', admins_path %>

@@ -1,0 +1,13 @@
+<%= bootstrap_form_for([@event, @agenda_entry]) do |f| %>
+
+  <%= f.text_field :title %>
+
+  <%= f.file_field :pdf %>
+
+  <%= f.hidden_field :event_id, value: @event.id %>
+
+  <div class="actions">
+    <%= f.submit 'Aceptar', class: 'btn btn-asoban' %>
+    <%= link_to 'Ver agenda completa', event_agenda_entries_path, class: 'btn btn-asoban-inverse' %>
+  </div>
+<% end %>

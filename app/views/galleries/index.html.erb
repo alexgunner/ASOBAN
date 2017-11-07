@@ -1,0 +1,53 @@
+
+<h1 class="text-center">Multimedia</h1>
+
+<% if notice.present? %>
+  <div class="alert alert-asoban">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <div id="notice"> <%= notice %> </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+    <div class="box">
+      <div class="box-header">
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead>
+              <tr>
+                <th>Título</th>
+                <th>Registro</th>
+                <th colspan="2"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @galleries.each do |gallery| %>
+                <tr>
+                  <td><%= gallery.title %></td>
+                  <td><img src='<%= gallery.picture.url %>' class='img-responsive'></td>
+                  <td><%= link_to 'Editar', edit_gallery_path(gallery), class: 'btn btn-asoban' %></td>
+                  <td><%= link_to 'Eliminar', gallery, method: :delete, data: {
+                    confirm: 'Borrando registro de Multimedia',
+                    'confirm-button-text': 'Si',
+                    'cancel-button-text': 'No',
+                    'confirm-button-color': '#66CD00',
+                    'sweet-alert-type': 'warning',
+                    text: 'Estas seguro?'
+                  }, class: 'btn btn-asoban-inverse' %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <%= link_to 'Agregar registro', new_gallery_path, class: 'btn btn-asoban' %>
+      </div>
+    </div>
+    <!-- /.box -->
+  </div>
+</div>

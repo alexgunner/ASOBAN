@@ -1,0 +1,50 @@
+
+<h1 class="text-center">Tarjetas</h1>
+
+<% if notice.present? %>
+  <div class="alert alert-asoban">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <div id="notice"> <%= notice %> </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+    <div class="box">
+      <div class="box-header">
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Twitter</th>
+              <th>Certificaciones</th>
+              <th>Boletín</th>
+              <th>Título</th>
+              <th>Contenido</th>
+              <th>Url</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @cards.each do |card| %>
+              <tr>
+                <td><%= card.twitter %></td>
+                <td><%= card.certifications %></td>
+                <td><%= card.newsfeed %></td>
+                <td><%= card.title %></td>
+                <td><%= card.content %></td>
+                <td><%= card.url %></td>
+                <td><%= link_to 'Editar', edit_card_path(card), class: 'btn btn-asoban' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+</div>

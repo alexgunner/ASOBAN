@@ -1,0 +1,184 @@
+<div class="vertical-space-50px"></div>
+<section class="standalone-section">
+  <div class="container">
+    <!-- EVENTO -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+        <img class="event-img" src="<%= @event.picture.url %>" alt="">
+        <div class="vertical-space-50px"></div>
+      </div>
+      <h3 class="event-title"><%= @event.title %></h3>
+      <div class="col-xs-12 col-sm-12 col-md-6">
+        <div class="vertical-space-50px"></div>
+        <%== @event.description %>
+      </div>
+    </div>
+    <div class="vertical-space-50px"></div>
+    <!-- EVENTO -->
+
+
+
+    <!-- auspicios -->
+    <% if @event.sponsors.count.nonzero? %>
+      <section class="section-padding team-outer text-center">
+        <h2><%= @event.sponsors_title %></h2>
+        <div class="vertical-space-50px"></div>
+        <div class="col-md-12 bank-list-box">
+          <% @event.sponsors.each_with_index do |sponsor, index| %>
+            <div class="bank-link"><img class="bank-link-img"  src="<%= sponsor.image.url %>" alt="Auspiciador <%= index + 1 %>"></div>
+          <% end %>
+        </div>
+      </section>
+    <% end %>
+    <!-- auspicios -->
+
+
+
+    <!-- registration -->
+    <% if @event.registration_image.present? || @event.registration_pdf.present? %>
+      <section class="section-padding team-outer text-center">
+        <h2><%= @event.registration_title %></h2>
+        <div class="vertical-space-50px"></div>
+        <div class="row">
+          <div class="col-md-12">
+            <% if @event.registration_image.present? %>
+              <img class="event-img" src="<%= @event.registration_image.url %>" alt="">
+            <% end %>
+            <div class="vertical-space-10px"></div>
+            <% if @event.registration_pdf.present? %>
+              <%= render :partial => 'partials/pdf_viewer', :locals => { pdf_url: @event.registration_pdf.url(:original, timestamp: false), button_text: 'Informacion de Registro' } %>
+            <% end %>
+          </div>
+        </div>
+      </section>
+    <% end %>
+    <!-- registration -->
+
+
+
+    <!-- Agenda -->
+    <% if @event.agenda_entry.count.nonzero? %>
+      <section class="section-padding team-outer">
+       <!-- .agenda-outer -->
+         <div class="container">
+           <h2 class="text-center"><%= @event.agenda_title %></h2>
+           <div class="vertical-space-50px"></div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+              <table class="table table-hover">
+                <tbody>
+                  <% @event.agenda_entry.each do |agenda_entry| %>
+                    <tr>
+                      <td class="text-center"><%= agenda_entry.title %>
+                      <hr>
+                      <button class="btn btn-asoban" type="button" name="button" data-toggle="modal" data-target="#agenda-entry-<%= agenda_entry.id %>"><%= 'Ver documento anexado' %></button>
+                      <div class="vertical-space-10px"></div>
+                    </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            </div>
+         </div>
+         <!-- /.agenda-outer -->
+         <% @event.agenda_entry.each do |agenda_entry| %>
+            <div class="container">
+              <div class="modal fade" id="agenda-entry-<%= agenda_entry.id %>" role="dialog">
+                <div class="modal-dialog modal-lg">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4> <%= @event.agenda_title %> </h4>
+                      </div>
+                    <div class="modal-body">
+                      <iframe src="http://docs.google.com/gview?url=http://<%= request.host + agenda_entry.pdf.url(:original, timestamp: false) %>&embedded=true" width="100%" height="100%" style="border: none;">
+                        El navegador actual no soporta la visualizacion de PDFs. Para ver el documento puede descargarlo haciendo click en este boton: <a href="<%= agenda_entry.pdf.url %>">Descargar PDF</a>
+                      </iframe>
+                    </div>
+                    <div class="modal-footer">
+                      Para descargar el pdf haga <a href="<%= agenda_entry.pdf.url %>" download class="btn btn-asoban">click aquí.</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             </div>
+           <% end %>
+      </section>
+    <% end %>
+    <!-- Agenda -->
+
+
+
+    <!-- Speakers -->
+    <% if @event.speakers.count.nonzero? %>
+      <section class="team-outer">
+       <!-- .team-outer -->
+         <div class="container">
+           <h2 class="text-center"><%= @event.speakers_title %></h2>
+           <div class="vertical-space-50px"></div>
+            <div class="row">
+               <% @event.speakers.each do |speaker| %>
+                 <div class="col-md-4 text-center">
+                    <div class="team speaker-wrapper">
+                       <img src="<%= speaker.image.url %>" alt="team"/>
+                       <h2><%= speaker.title %></h2>
+                       <div class="vertical-space-10px"></div>
+                       <% if speaker.pdf.present? %><button class="btn btn-asoban" type="button" name="button" data-toggle="modal" data-target="#speaker-<%=speaker.id%>"><%= 'Ver documento anexado' %></button><% end %>
+                    </div>
+                 </div>
+               <% end %>
+            </div>
+         </div>
+         <script type="text/javascript">
+           var highestBox = 140;
+           $('.speaker-wrapper').each(function(){
+              if($(this).height() > highestBox) {
+                highestBox = $(this).height();
+              }
+           });
+           $('.speaker-wrapper').height(highestBox);
+         </script>
+         <!-- /.team-outer -->
+      </section>
+      <!-- speaker document modals -->
+      <% @event.speakers.each do |speaker| %>
+        <% if speaker.pdf.present? %>
+          <div class="container">
+            <div class="modal fade" id="speaker-<%=speaker.id%>" role="dialog">
+              <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4> <%= speaker.title %> </h4>
+                    </div>
+                  <div class="modal-body">
+                    <iframe src="http://docs.google.com/gview?url=http://<%= request.host + speaker.pdf.url(:original, timestamp: false) %>&embedded=true" width="100%" height="100%" style="border: none;">
+                      El navegador actual no soporta la visualizacion de PDFs. Para ver el documento puede descargarlo haciendo click en este boton: <a download href="<%= speaker.pdf.url %>">Descargar PDF</a>
+                    </iframe>
+                  </div>
+                  <div class="modal-footer">
+                    Para descargar el pdf haga <a href="<%= speaker.pdf.url %>" download class="btn btn-asoban">click aquí.</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      <!-- speaker document modals -->
+    <% end %>
+    <!-- Speakers -->
+
+
+
+    <div class="col-md-12 text-center">
+      <div class="vertical-space-10px"></div>
+      <a href="/event" class="btn btn-asoban">Volver</a>
+    </div>
+  </div>
+</section>
+
+<div class="vertical-space-10px"></div>

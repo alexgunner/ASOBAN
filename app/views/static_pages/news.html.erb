@@ -1,0 +1,28 @@
+
+<section class="news standalone-section news-section">
+   <div class="news-presentation">
+     <% Article.all.each do |article| %>
+       <% if article.category.name == "Noticias" %>
+         <div class="row">
+           <div class="news-summary bg-transition-news">
+             <div class="col-md-4">
+               <h2 class="bold-heading"><%= article.title %></h2>
+               <!-- <h3>Diciembre 2016</h3> -->
+               <hr>
+               <div class="row">
+                 <div class="col-sm-6 col-md-5 button-box">
+                   <a class="summary-button" href="<%= article_url(article) %>">Leer Más</a>
+                 </div>
+                 <% if false %>
+                   <div class="col-sm-6 col-md-6 button-box">
+                     <a class="summary-button" href="#">Descargar PDF</a>
+                   </div>
+                 <% end %>
+               </div>
+             </div>
+           </div>
+         </div>
+       <% end %>
+     <% end %>
+    </div>
+</section>

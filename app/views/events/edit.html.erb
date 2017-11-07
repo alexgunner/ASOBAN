@@ -1,0 +1,48 @@
+
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+    <div class="box">
+      <div class="box-header">
+				<h2>Editar Evento</h2>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive" style="overflow-x:hidden;">
+        <%= render 'form', event: @event %>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+    <div class="box">
+      <div class="box-header">
+				<h2>Mas informacion del evento</h2>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive">
+        <h3>Agenda</h3>
+        <label>Entradas en la agenda: </label>
+        <%= @event.agenda_entry.count %>
+        <%= link_to 'Administrar', event_agenda_entries_path(@event), class: 'btn btn-asoban pull-right' %>
+        <hr>
+
+        <h3>Auspiciadores</h3>
+        <label>Cantidad: </label>
+        <%= @event.sponsors.count %>
+        <%= link_to 'Administrar', event_sponsors_path(@event), class: 'btn btn-asoban pull-right' %>
+        <hr>
+
+        <h3>Conferencistas</h3>
+        <label>Cantidad: </label>
+        <%= @event.speakers.count %>
+        <%= link_to 'Administrar', event_speakers_path(@event), class: 'btn btn-asoban pull-right' %>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+</div>

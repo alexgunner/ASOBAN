@@ -1,0 +1,84 @@
+<%= bootstrap_form_for(contact, html: {class: 'disable-enter'}) do |f| %>
+  <% if contact.errors.any? %>
+    <div id="error_explanation">
+      <h2>Errores en el formulario:</h2>
+
+      <ul>
+      <% contact.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= f.select :city, options_for_select(['Beni', 'Chuquisaca', 'Cochabamba', 'La Paz', 'Oruro', 'Pando', 'Potosí', 'Santa Cruz', 'Tarija'], contact.city)  %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.text_field :fax  %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.text_field :mailbox  %>
+  </div>
+
+  <div class="emails-div">
+    <% if contact.emails.nil? %>
+      <%= render 'email_field_standalone', {f: f, email: contact.emails} %>
+    <% else %>
+      <%= render 'email_field_standalone', {f: f, email: contact.emails.split('%').first} %>
+      <% contact.emails.split('%').drop(1).each_with_index do |email, index| %>
+        <%= render 'email_field_generated', {f: f, email: email} %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="phone_numbers-div">
+    <% if contact.phone_numbers.nil? or contact.phone_numbers.split('%').length == 1 %>
+      <%= render 'phone_number_field_standalone', {f: f, phone_number: contact.phone_numbers} %>
+    <% else %>
+      <%= render 'phone_number_field_standalone', {f: f, phone_number: contact.phone_numbers.split('%').first} %>
+      <% contact.phone_numbers.split('%').drop(1).each_with_index do |phone_number, index| %>
+        <%= render 'phone_number_field_generated', {f: f, phone_number: phone_number} %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <p>
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-asoban" tabindex="-1" name="generateEmailField" onclick="addEmailOrPhoneFieldToContacts('email')">Nuevo Email</button>
+      <button type="button" class="btn btn-asoban" tabindex="-1" name="generatePhoneField" onclick="addEmailOrPhoneFieldToContacts('phone_number')">Nuevo Telefono</button>
+    </div>
+  </p>
+
+  <div class="field form-group">
+    <%= f.text_field :address, class: validation_js_classes('address') + ' form-control'  %>
+  </div>
+
+
+  <div class="panel panel-info">
+    <input id="contact-map-input" class="form-control" type="text" placeholder="Buscador" style="width:50%; margin-top:5px;">
+    <div class="panel-heading">Para seleccionar la ubicacion del contacto haga click en el mapa.</div>
+  </div>
+  <div id="contact_map" style="width: 100%; height: 500px;"></div>
+  <%= f.hidden_field :latitude, id: 'map_lat' %>
+  <%= f.hidden_field :longitude, id: 'map_lng' %>
+
+  <br>
+  <div class="actions">
+    <%= f.submit 'Aceptar', id: 'contact_submit', class: 'btn btn-asoban' %>
+    <%= link_to "Volver", '/contacts', class: "btn btn-asoban-inverse" %>
+  </div>
+<% end %>
+
+
+<script type="text/javascript">
+  $('.disable-enter').on('keyup keypress', function(e) {
+    var keyCode = e.keyCode || e.which;
+    if (keyCode === 13) {
+      e.preventDefault();
+      return false;
+    }
+  });
+</script>
